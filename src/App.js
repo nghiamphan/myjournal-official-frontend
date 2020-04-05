@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Journals from './components/Journals'
+import AddJournal from './components/AddJournal'
 
 const initialJournals = [
 	{
@@ -58,9 +59,14 @@ const initialJournals = [
 
 const App = () => {
 	const [journals, setJournals] = useState(initialJournals)
+
+	const addJournal = (event) => {
+		event.preventDefault()
+	}
 	return (
 		<div className="App">
 			<Journals journals={journals}/>
+			<AddJournal addJournal={addJournal}/>
 		</div>
 	)
 }
