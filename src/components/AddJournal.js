@@ -6,14 +6,18 @@ const AddJournal = ({ addJournal }) => {
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
-	let todoTempId = todos.length
+	let todoTempId = todos.length === 0 ? 0 : todos[todos.length-1].tempId+1
 
 	const addTask = () => {
 		setTodos(todos.concat({
-			tempId: todoTempId++,
+			tempId: todoTempId,
 			done: false,
 			task: ''
 		}))
+	}
+
+	const deleteTask = tempId => {
+		setTodos(todos.filter(todo => todo.tempId !== tempId))
 	}
 
 	const handleTodoChange = (tempId, property) => (event) => {
@@ -38,6 +42,7 @@ const AddJournal = ({ addJournal }) => {
 					<div key={todo.tempId}>
 						<input type="checkbox" checked={todo.done} onChange={handleTodoChange(todo.tempId, 'done')}/>
 						<input value={todo.task} onChange={handleTodoChange(todo.tempId, 'task')}/>
+						<button onClick={() => deleteTask(todo.tempId)}>delete</button>
 					</div>
 				))}
 
