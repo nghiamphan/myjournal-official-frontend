@@ -62,6 +62,27 @@ const AddJournal = ({ addJournal }) => {
 			summary => summary.tempId !== tempId ? summary : updatedSummary)
 		)
 	}
+
+	const addWord = () => {
+		setTodayWords(todayWords.concat({
+			tempId: generateId(todayWords),
+			word: '',
+			definition: '',
+		}))
+	}
+
+	const deleteWord = tempId => {
+		setTodayWords(todayWords.filter(word => word.tempId !== tempId))
+	}
+
+	const handleWordsChange = (tempId, property) => (event) => {
+		const word = todayWords.find(n => n.tempId === tempId)
+		const updatedWord = { ...word }
+		updatedWord[property] = event.target.value
+		setTodayWords(todayWords.map(
+			word => word.tempId !== tempId ? word : updatedWord)
+		)
+	}
 	return (
 		<form onSubmit={addJournal}>
 			<h2>Journal for Today</h2>
@@ -108,7 +129,26 @@ const AddJournal = ({ addJournal }) => {
 						<button onClick={() => deleteSummary(summary.tempId)}>delete</button>
 					</div>
 				))}
+			</div>
 
+			<div>
+				<h3>Words of the day</h3>
+				<button onClick={addWord}>add a word</button>
+				{todayWords.map(word => (
+					<div
+						key={word.tempId}
+						style={padding}>
+						<input
+							placeholder="Word"
+							value={word.word}
+							onChange={handleWordsChange(word.tempId, 'word')}/>
+						<input
+							placeholder="Definition..."
+							value={word.definition}
+							onChange={handleWordsChange(word.tempId, 'definition')}/>
+						<button onClick={() => deleteWord(word.tempId)}>delete</button>
+					</div>
+				))}
 			</div>
 		</form>
 	)
