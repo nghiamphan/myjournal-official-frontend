@@ -16,12 +16,12 @@ const AddJournal = ({ addJournal }) => {
 		}))
 	}
 
-	const handleTodoChange = (position, property) => (event) => {
-		const todo = todos[position]
+	const handleTodoChange = (tempId, property) => (event) => {
+		const todo = todos.find(n => n.tempId === tempId)
 		const updatedTodo = property === 'done' ?
 			{ ...todo, done: event.target.checked }
 			: { ...todo, task: event.target.value }
-		setTodos(todos.map((todo, i) => i !== position ? todo : updatedTodo))
+		setTodos(todos.map(todo => todo.tempId !== tempId ? todo : updatedTodo))
 	}
 
 	const handleReflectionChange = event => {
@@ -34,10 +34,10 @@ const AddJournal = ({ addJournal }) => {
 			<div>
 				<h3>Todos</h3>
 				<button onClick={addTask}>add a task</button> <br/>
-				{todos.map((todo, position) => (
+				{todos.map(todo => (
 					<div key={todo.tempId}>
-						<input type="checkbox" checked={todo.done} onChange={handleTodoChange(position, 'done')}/>
-						<input value={todo.task} onChange={handleTodoChange(position, 'task')}/>
+						<input type="checkbox" checked={todo.done} onChange={handleTodoChange(todo.tempId, 'done')}/>
+						<input value={todo.task} onChange={handleTodoChange(todo.tempId, 'task')}/>
 					</div>
 				))}
 
