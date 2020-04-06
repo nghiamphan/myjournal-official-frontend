@@ -1,20 +1,27 @@
 import React, { useState } from 'react'
 
 const AddJournal = ({ addJournal }) => {
-	const [todo, setTodo] = useState({ done: false, task: '' })
 	const [todos, setTodos] = useState([])
 	const [reflection, setReflection] = useState('')
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
-	console.log('Todo: ', todo)
+	let todoTempId = todos.length
 
-	const handleTodoChange = (property) => (event) => {
-		if (property === 'done') {
-			setTodo({ ...todo, done: event.target.checked })
-		} else {
-			setTodo({ ...todo, task: event.target.value })
-		}
+	const addTask = () => {
+		setTodos(todos.concat({
+			tempId: todoTempId++,
+			done: false,
+			task: ''
+		}))
+	}
+
+	const handleTodoChange = (position, property) => (event) => {
+		const todo = todos[position]
+		const updatedTodo = property === 'done' ?
+			{ ...todo, done: event.target.checked }
+			: { ...todo, task: event.target.value }
+		setTodos(todos.map((todo, i) => i !== position ? todo : updatedTodo))
 	}
 
 	const handleReflectionChange = event => {
@@ -26,8 +33,14 @@ const AddJournal = ({ addJournal }) => {
 
 			<div>
 				<h3>Todos</h3>
-				<input type="checkbox" checked={todo.done} onChange={handleTodoChange('done')}/>
-				<input value={todo.task} onChange={handleTodoChange('task')}/>
+				<button onClick={addTask}>add a task</button> <br/>
+				{todos.map((todo, position) => (
+					<div key={todo.tempId}>
+						<input type="checkbox" checked={todo.done} onChange={handleTodoChange(position, 'done')}/>
+						<input value={todo.task} onChange={handleTodoChange(position, 'task')}/>
+					</div>
+				))}
+
 			</div>
 
 
