@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 
+const generateId = (array) => {
+	if (array.length === 0 || array[array.length-1].tempId === undefined) {
+		return 0
+	} else {
+		return array[array.length-1].tempId + 1
+	}
+}
+
 const AddJournal = ({ addJournal }) => {
 	const [todos, setTodos] = useState([])
 	const [reflection, setReflection] = useState('')
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
-	let todoTempId = todos.length === 0 ? 0 : todos[todos.length-1].tempId+1
-
 	const addTask = () => {
 		setTodos(todos.concat({
-			tempId: todoTempId,
+			tempId: generateId(todos),
 			done: false,
 			task: ''
 		}))
