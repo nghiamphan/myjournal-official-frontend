@@ -21,7 +21,7 @@ const Journal = ({ journal }) => {
 		<div>
 			<h3>Book Summary</h3>
 			<ul>
-				{journal.book_summary.map(bookSummary =>
+				{journal.book_summaries.map(bookSummary =>
 					<BookSummary
 						key={bookSummary.id}
 						bookSummary={bookSummary} />
@@ -55,7 +55,7 @@ const Journal = ({ journal }) => {
 				{journal.reflection}
 			</div>
 
-			{journal.book_summary && bookSummariesDisplay()}
+			{journal.book_summaries && bookSummariesDisplay()}
 
 			{journal.words_of_today && todayWordsDisplay()}
 

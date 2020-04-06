@@ -8,6 +8,9 @@ const generateId = (array) => {
 	}
 }
 
+const padding = {
+	padding: 12
+}
 const AddJournal = ({ addJournal }) => {
 	const [todos, setTodos] = useState([])
 	const [reflection, setReflection] = useState('')
@@ -26,7 +29,7 @@ const AddJournal = ({ addJournal }) => {
 		setTodos(todos.filter(todo => todo.tempId !== tempId))
 	}
 
-	const handleTodoChange = (tempId, property) => (event) => {
+	const handleTodosChange = (tempId, property) => (event) => {
 		const todo = todos.find(n => n.tempId === tempId)
 		const updatedTodo = property === 'done' ?
 			{ ...todo, done: event.target.checked }
@@ -37,6 +40,28 @@ const AddJournal = ({ addJournal }) => {
 	const handleReflectionChange = event => {
 		setReflection(event.target.value)
 	}
+
+	const addSummary = () => {
+		setBookSummaries(bookSummaries.concat({
+			tempId: generateId(bookSummaries),
+			title: '',
+			chapter: '',
+			content: ''
+		}))
+	}
+
+	const deleteSummary = tempId => {
+		setBookSummaries(bookSummaries.filter(summary => summary.tempId !== tempId))
+	}
+
+	const handleSummariesChange = (tempId, property) => (event) => {
+		const summary = bookSummaries.find(n => n.tempId === tempId)
+		const updatedSummary = { ...summary }
+		updatedSummary[property] = event.target.value
+		setBookSummaries(bookSummaries.map(
+			summary => summary.tempId !== tempId ? summary : updatedSummary)
+		)
+	}
 	return (
 		<form onSubmit={addJournal}>
 			<h2>Journal for Today</h2>
@@ -46,8 +71,8 @@ const AddJournal = ({ addJournal }) => {
 				<button onClick={addTask}>add a task</button> <br/>
 				{todos.map(todo => (
 					<div key={todo.tempId}>
-						<input type="checkbox" checked={todo.done} onChange={handleTodoChange(todo.tempId, 'done')}/>
-						<input value={todo.task} onChange={handleTodoChange(todo.tempId, 'task')}/>
+						<input type="checkbox" checked={todo.done} onChange={handleTodosChange(todo.tempId, 'done')}/>
+						<input value={todo.task} onChange={handleTodosChange(todo.tempId, 'task')}/>
 						<button onClick={() => deleteTask(todo.tempId)}>delete</button>
 					</div>
 				))}
@@ -58,6 +83,32 @@ const AddJournal = ({ addJournal }) => {
 			<div>
 				<h3>How is your day?</h3>
 				<textarea value={reflection} onChange={handleReflectionChange}></textarea>
+			</div>
+
+			<div>
+				<h3>Book Summaries</h3>
+				<button onClick={addSummary}>add a summary</button> <br/>
+				{bookSummaries.map(summary => (
+					<div key={summary.tempId} style={padding}>
+						<div>
+							Title:
+							<input
+								value={summary.title}
+								onChange={handleSummariesChange(summary.tempId, 'title')}/>
+							Chapter:
+							<input
+								value={summary.chapter}
+								onChange={handleSummariesChange(summary.tempId, 'chapter')}/>
+						</div>
+						<textarea
+							placeholder="chapter summary and your thoughts..."
+							value={summary.content}
+							onChange={handleSummariesChange(summary.tempId, 'content')}/>
+						<br/>
+						<button onClick={() => deleteSummary(summary.tempId)}>delete</button>
+					</div>
+				))}
+
 			</div>
 		</form>
 	)

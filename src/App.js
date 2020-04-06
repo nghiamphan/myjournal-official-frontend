@@ -19,12 +19,12 @@ const initialJournals = [
 			}
 		],
 		reflection: 'Today is good.',
-		book_summary: [
+		book_summaries: [
 			{
 				id: 1,
 				title: 'Catch-22',
 				chapter: 'The Texan',
-				summary: 'This chapter is very interesting'
+				content: 'This chapter is very interesting'
 			}
 		],
 		words_of_today: [
@@ -46,12 +46,12 @@ const initialJournals = [
 			}
 		],
 		reflection: 'Today is fantastic.',
-		book_summary: [
+		book_summaries: [
 			{
 				id: 1,
 				title: 'Selfish Gene',
 				chapter: '12',
-				summary: 'This chapter is very insightful.'
+				content: 'This chapter is very insightful.'
 			}
 		]
 	}
