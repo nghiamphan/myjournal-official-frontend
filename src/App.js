@@ -11,13 +11,10 @@ const App = () => {
 		setJournals(initialJournals)
 	}, [])
 
-	const addJournal = (event) => {
-		event.preventDefault()
-	}
 	return (
 		<div className="App">
 			<Journals journals={journals}/>
-			<AddJournal addJournal={addJournal}/>
+			<AddJournal/>
 		</div>
 	)
 }

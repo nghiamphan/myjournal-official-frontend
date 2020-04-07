@@ -11,7 +11,7 @@ const generateId = (array) => {
 const padding = {
 	padding: 12
 }
-const AddJournal = ({ addJournal }) => {
+const AddJournal = () => {
 	const [date, setDate] = useState('')
 	const [todos, setTodos] = useState([])
 	const [reflection, setReflection] = useState('')
@@ -83,6 +83,18 @@ const AddJournal = ({ addJournal }) => {
 		setTodayWords(todayWords.map(
 			word => word.tempId !== tempId ? word : updatedWord)
 		)
+	}
+
+	const addJournal = event => {
+		event.preventDefault()
+		const journal = {
+			date: date,
+			todos: todos,
+			reflection: reflection,
+			book_summaryies: bookSummaries,
+			words_of_today: todayWords
+		}
+		console.log(journal)
 	}
 	return (
 		<form onSubmit={addJournal}>
