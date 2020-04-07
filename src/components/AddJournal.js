@@ -88,6 +88,10 @@ const AddJournal = ({ addJournal }) => {
 			<h2>Journal for Today</h2>
 
 			<div>
+				<h3>Date <input type="date"/></h3>
+			</div>
+
+			<div>
 				<h3>Todos</h3>
 				<button onClick={addTask}>add a task</button> <br/>
 				{todos.map(todo => (
