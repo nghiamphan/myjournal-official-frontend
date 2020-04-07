@@ -12,6 +12,7 @@ const padding = {
 	padding: 12
 }
 const AddJournal = ({ addJournal }) => {
+	const [date, setDate] = useState('')
 	const [todos, setTodos] = useState([])
 	const [reflection, setReflection] = useState('')
 	const [bookSummaries, setBookSummaries] = useState([])
@@ -88,7 +89,12 @@ const AddJournal = ({ addJournal }) => {
 			<h2>Journal for Today</h2>
 
 			<div>
-				<h3>Date <input type="date"/></h3>
+				<h3>Date
+					<input
+						type="date"
+						value={date}
+						onChange={(event) => setDate(event.target.value)}/>
+				</h3>
 			</div>
 
 			<div>
@@ -154,6 +160,11 @@ const AddJournal = ({ addJournal }) => {
 					</div>
 				))}
 			</div>
+
+			<div style={padding}>
+				<button type="submit">save</button>
+			</div>
+
 		</form>
 	)
 }
