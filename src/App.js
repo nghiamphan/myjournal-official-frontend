@@ -6,9 +6,9 @@ import journalService from './services/journalService'
 const App = () => {
 	const [journals, setJournals] = useState([])
 
-	useEffect( async () => {
-		const initialJournals = await journalService.getAll()
-		setJournals(initialJournals)
+	useEffect(() => {
+		journalService.getAll()
+			.then(initialJournals => setJournals(initialJournals))
 	}, [])
 
 	return (
