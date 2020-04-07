@@ -1,64 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Journals from './components/Journals'
 import AddJournal from './components/AddJournal'
-
-const initialJournals = [
-	{
-		id: 1,
-		date: '2019-05-30T17:30:31.098Z',
-		todos: [
-			{
-				id: 1,
-				task: 'Learn React for two hours',
-				done: true
-			},
-			{
-				id: 2,
-				task: 'Learn to skate for one hour',
-				done: false
-			}
-		],
-		reflection: 'Today is good.',
-		book_summaries: [
-			{
-				id: 1,
-				title: 'Catch-22',
-				chapter: 'The Texan',
-				content: 'This chapter is very interesting'
-			}
-		],
-		words_of_today: [
-			{
-				id: 1,
-				word: 'Epiphany',
-				definition: 'A suddent moment of insight or realization.'
-			}
-		]
-	},
-	{
-		id: 2,
-		date: '2019-05-30T17:30:31.098Z',
-		todos: [
-			{
-				id: 1,
-				task: 'Mediatation for 5 minutes',
-				done: true
-			}
-		],
-		reflection: 'Today is fantastic.',
-		book_summaries: [
-			{
-				id: 1,
-				title: 'Selfish Gene',
-				chapter: '12',
-				content: 'This chapter is very insightful.'
-			}
-		]
-	}
-]
+import journalService from './services/journalService'
 
 const App = () => {
-	const [journals, setJournals] = useState(initialJournals)
+	const [journals, setJournals] = useState([])
+
+	useEffect( async () => {
+		const initialJournals = await journalService.getAll()
+		setJournals(initialJournals)
+	}, [])
 
 	const addJournal = (event) => {
 		event.preventDefault()

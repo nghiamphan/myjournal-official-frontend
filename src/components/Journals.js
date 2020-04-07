@@ -5,7 +5,7 @@ const Journals = ({ journals }) => {
 	return (
 		<ul>
 			<h1>My Journal</h1>
-			{journals.map(journal =>
+			{journals && journals.map(journal =>
 				<Journal
 					key={journal.id}
 					journal={journal}/>
