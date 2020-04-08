@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux'
 import { createJournal } from '../reducers/journalReducer'
 
 const generateId = (array) => {
-	if (array.length === 0 || array[array.length-1].tempId === undefined) {
+	if (array.length === 0 || array[array.length-1].id === undefined) {
 		return 0
 	} else {
-		return array[array.length-1].tempId + 1
+		return array[array.length-1].id + 1
 	}
 }
 
@@ -25,22 +25,22 @@ const AddJournal = () => {
 	const addTask = event => {
 		event.preventDefault()
 		setTodos(todos.concat({
-			tempId: generateId(todos),
+			id: generateId(todos),
 			done: false,
 			task: ''
 		}))
 	}
 
-	const deleteTask = tempId => {
-		setTodos(todos.filter(todo => todo.tempId !== tempId))
+	const deleteTask = id => {
+		setTodos(todos.filter(todo => todo.id !== id))
 	}
 
-	const handleTodosChange = (tempId, property) => (event) => {
-		const todo = todos.find(n => n.tempId === tempId)
+	const handleTodosChange = (id, property) => (event) => {
+		const todo = todos.find(n => n.id === id)
 		const updatedTodo = property === 'done' ?
 			{ ...todo, done: event.target.checked }
 			: { ...todo, task: event.target.value }
-		setTodos(todos.map(todo => todo.tempId !== tempId ? todo : updatedTodo))
+		setTodos(todos.map(todo => todo.id !== id ? todo : updatedTodo))
 	}
 
 	const handleReflectionChange = event => {
@@ -50,45 +50,45 @@ const AddJournal = () => {
 	const addSummary = event => {
 		event.preventDefault()
 		setBookSummaries(bookSummaries.concat({
-			tempId: generateId(bookSummaries),
+			id: generateId(bookSummaries),
 			title: '',
 			chapter: '',
 			content: ''
 		}))
 	}
 
-	const deleteSummary = tempId => {
-		setBookSummaries(bookSummaries.filter(summary => summary.tempId !== tempId))
+	const deleteSummary = id => {
+		setBookSummaries(bookSummaries.filter(summary => summary.id !== id))
 	}
 
-	const handleSummariesChange = (tempId, property) => (event) => {
-		const summary = bookSummaries.find(n => n.tempId === tempId)
+	const handleSummariesChange = (id, property) => (event) => {
+		const summary = bookSummaries.find(n => n.id === id)
 		const updatedSummary = { ...summary }
 		updatedSummary[property] = event.target.value
 		setBookSummaries(bookSummaries.map(
-			summary => summary.tempId !== tempId ? summary : updatedSummary)
+			summary => summary.id !== id ? summary : updatedSummary)
 		)
 	}
 
 	const addWord = event => {
 		event.preventDefault()
 		setTodayWords(todayWords.concat({
-			tempId: generateId(todayWords),
+			id: generateId(todayWords),
 			word: '',
 			definition: '',
 		}))
 	}
 
-	const deleteWord = tempId => {
-		setTodayWords(todayWords.filter(word => word.tempId !== tempId))
+	const deleteWord = id => {
+		setTodayWords(todayWords.filter(word => word.id !== id))
 	}
 
-	const handleWordsChange = (tempId, property) => (event) => {
-		const word = todayWords.find(n => n.tempId === tempId)
+	const handleWordsChange = (id, property) => (event) => {
+		const word = todayWords.find(n => n.id === id)
 		const updatedWord = { ...word }
 		updatedWord[property] = event.target.value
 		setTodayWords(todayWords.map(
-			word => word.tempId !== tempId ? word : updatedWord)
+			word => word.id !== id ? word : updatedWord)
 		)
 	}
 
@@ -120,10 +120,10 @@ const AddJournal = () => {
 				<h3>Todos</h3>
 				<button onClick={addTask}>add a task</button> <br/>
 				{todos.map(todo => (
-					<div key={todo.tempId}>
-						<input type="checkbox" checked={todo.done} onChange={handleTodosChange(todo.tempId, 'done')}/>
-						<input value={todo.task} onChange={handleTodosChange(todo.tempId, 'task')}/>
-						<button onClick={() => deleteTask(todo.tempId)}>delete</button>
+					<div key={todo.id}>
+						<input type="checkbox" checked={todo.done} onChange={handleTodosChange(todo.id, 'done')}/>
+						<input value={todo.task} onChange={handleTodosChange(todo.id, 'task')}/>
+						<button onClick={() => deleteTask(todo.id)}>delete</button>
 					</div>
 				))}
 
@@ -139,23 +139,23 @@ const AddJournal = () => {
 				<h3>Book Summaries</h3>
 				<button onClick={addSummary}>add a summary</button> <br/>
 				{bookSummaries.map(summary => (
-					<div key={summary.tempId} style={padding}>
+					<div key={summary.id} style={padding}>
 						<div>
 							Title:
 							<input
 								value={summary.title}
-								onChange={handleSummariesChange(summary.tempId, 'title')}/>
+								onChange={handleSummariesChange(summary.id, 'title')}/>
 							Chapter:
 							<input
 								value={summary.chapter}
-								onChange={handleSummariesChange(summary.tempId, 'chapter')}/>
+								onChange={handleSummariesChange(summary.id, 'chapter')}/>
 						</div>
 						<textarea
 							placeholder="chapter summary and your thoughts..."
 							value={summary.content}
-							onChange={handleSummariesChange(summary.tempId, 'content')}/>
+							onChange={handleSummariesChange(summary.id, 'content')}/>
 						<br/>
-						<button onClick={() => deleteSummary(summary.tempId)}>delete</button>
+						<button onClick={() => deleteSummary(summary.id)}>delete</button>
 					</div>
 				))}
 			</div>
@@ -165,17 +165,17 @@ const AddJournal = () => {
 				<button onClick={addWord}>add a word</button>
 				{todayWords.map(word => (
 					<div
-						key={word.tempId}
+						key={word.id}
 						style={padding}>
 						<input
 							placeholder="Word"
 							value={word.word}
-							onChange={handleWordsChange(word.tempId, 'word')}/>
+							onChange={handleWordsChange(word.id, 'word')}/>
 						<input
 							placeholder="Definition..."
 							value={word.definition}
-							onChange={handleWordsChange(word.tempId, 'definition')}/>
-						<button onClick={() => deleteWord(word.tempId)}>delete</button>
+							onChange={handleWordsChange(word.id, 'definition')}/>
+						<button onClick={() => deleteWord(word.id)}>delete</button>
 					</div>
 				))}
 			</div>
