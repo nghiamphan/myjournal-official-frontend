@@ -7,6 +7,11 @@ const getAll = async () => {
 	return response.data
 }
 
+const createJournal = async (journalObject) => {
+	const response = await axios.post(baseUrl, journalObject)
+	return response.data
+}
 export default {
-	getAll
+	getAll,
+	createJournal
 }

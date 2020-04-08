@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createJournal } from '../reducers/journalReducer'
 
 const generateId = (array) => {
 	if (array.length === 0 || array[array.length-1].tempId === undefined) {
@@ -18,7 +20,10 @@ const AddJournal = () => {
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
-	const addTask = () => {
+	const dispatch = useDispatch()
+
+	const addTask = event => {
+		event.preventDefault()
 		setTodos(todos.concat({
 			tempId: generateId(todos),
 			done: false,
@@ -42,7 +47,8 @@ const AddJournal = () => {
 		setReflection(event.target.value)
 	}
 
-	const addSummary = () => {
+	const addSummary = event => {
+		event.preventDefault()
 		setBookSummaries(bookSummaries.concat({
 			tempId: generateId(bookSummaries),
 			title: '',
@@ -64,7 +70,8 @@ const AddJournal = () => {
 		)
 	}
 
-	const addWord = () => {
+	const addWord = event => {
+		event.preventDefault()
 		setTodayWords(todayWords.concat({
 			tempId: generateId(todayWords),
 			word: '',
@@ -87,14 +94,14 @@ const AddJournal = () => {
 
 	const addJournal = event => {
 		event.preventDefault()
-		const journal = {
+		const journalObject = {
 			date: date,
 			todos: todos,
 			reflection: reflection,
-			book_summaryies: bookSummaries,
+			book_summaries: bookSummaries,
 			words_of_today: todayWords
 		}
-		console.log(journal)
+		dispatch(createJournal(journalObject))
 	}
 	return (
 		<form onSubmit={addJournal}>
