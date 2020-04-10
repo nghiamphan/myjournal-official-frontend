@@ -4,7 +4,10 @@ import Calendar from 'react-calendar'
 
 const XEffectCalendar = () => {
 	const journals = useSelector(state => state.journals)
+
 	let days = []
+	// When compare days in sorted array 'days' and active days displayed in the calendar, 'cur' is the position of the first item in 'days' that is not yet smaller than the currently compared active day in the calendar.
+	let cur = 0
 	if (journals.length > 0) {
 		journals.map(journal => {
 			const notDoneTodos = journal.todos.filter(todo => !todo.done)
@@ -18,17 +21,23 @@ const XEffectCalendar = () => {
 
 	const crossOffDays = ({ date, view }) => {
 		if (view === 'month') {
-			for (let i = 0; i < days.length; i++) {
+			for (let i = cur; i < days.length; i++) {
 				const day = days[i]
 				if (day.getTime() === date.getTime()) {
+					cur ++
 					return 'cross-off-day'
+				} else if (day.getTime() < date.getTime()) {
+					cur ++
 				}
 			}
 		}
 		return null
 	}
+
 	return (
-		<Calendar tileClassName={crossOffDays}/>
+		<Calendar
+			tileClassName={crossOffDays}
+			onActiveStartDateChange={() => {cur = 0}}/>
 	)
 }
 
