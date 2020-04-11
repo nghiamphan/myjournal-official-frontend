@@ -1,6 +1,6 @@
 import journalService from '../services/journalService'
 
-const journalReducer = (state = [], action) => {
+const journalsReducer = (state = [], action) => {
 	switch (action.type) {
 	case 'INIT_JOURNALS':
 		return action.data
@@ -35,4 +35,4 @@ export const createJournal = (journalObject) => {
 	}
 }
 
-export default journalReducer
+export default journalsReducer

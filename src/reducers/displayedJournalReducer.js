@@ -1,4 +1,4 @@
-const currentJournalReducer = (state = null, action) => {
+const displayedJournalReducer = (state = null, action) => {
 	switch (action.type) {
 	case 'SET_DISPLAYED_JOURNAL':
 		return action.id
@@ -14,4 +14,4 @@ export const setDisplayedJournal = (id) => {
 	}
 }
 
-export default currentJournalReducer
+export default displayedJournalReducer

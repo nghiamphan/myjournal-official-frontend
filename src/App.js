@@ -5,7 +5,7 @@ import {
 	Switch, Route, Link
 } from 'react-router-dom'
 import XEffectCalendar from './components/XEffectCalendar'
-import { initializeJournals } from './reducers/journalReducer'
+import { initializeJournals } from './reducers/journalsReducer'
 import MasterDetail from './components/MasterDetail'
 
 const App = () => {
