@@ -5,10 +5,8 @@ import {
 	Switch, Route, Link
 } from 'react-router-dom'
 import XEffectCalendar from './components/XEffectCalendar'
-import Journals from './components/Journals'
-import AddJournal from './components/AddJournal'
 import { initializeJournals } from './reducers/journalReducer'
-import DateList from './components/DateList'
+import MasterDetail from './components/MasterDetail'
 
 const App = () => {
 
@@ -33,7 +31,7 @@ const App = () => {
 					<XEffectCalendar/>
 				</Route>
 				<Route path="/journals">
-					<DateList/>
+					<MasterDetail/>
 				</Route>
 			</Switch>
 		</Router>

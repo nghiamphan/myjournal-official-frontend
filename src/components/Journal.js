@@ -43,7 +43,7 @@ const Journal = ({ journal }) => {
 		</div>
 	)
 	return (
-		<li>
+		<>
 			<div>
 				<h2>{journal.date}</h2>
 			</div>
@@ -59,7 +59,7 @@ const Journal = ({ journal }) => {
 
 			{journal.words_of_today.length !== 0 && todayWordsDisplay()}
 
-		</li>
+		</>
 	)
 }
 
