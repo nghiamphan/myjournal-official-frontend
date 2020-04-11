@@ -10,8 +10,16 @@ const MasterDetail = () => {
 
 	return (
 		<>
-			<DateList/>
-			{displayedJournal && <Journal journal={displayedJournal}/>}
+			<h1>My Journal</h1>
+			<div className="row">
+				<div className="col-3">
+					<DateList/>
+				</div>
+				<div className="col-9">
+					{displayedJournal && <Journal journal={displayedJournal}/>}
+				</div>
+
+			</div>
 		</>
 	)
 }

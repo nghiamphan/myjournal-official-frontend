@@ -8,7 +8,6 @@ const DateList = () => {
 
 	return (
 		<ul>
-			<h1>My Journal</h1>
 			{journals !== [] && journals.map(journal =>
 				<div
 					key={journal.id}
