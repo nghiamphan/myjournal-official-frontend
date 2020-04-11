@@ -20,21 +20,23 @@ const App = () => {
 	}
 
 	return (
-		<Router>
-			<div>
-				<Link style={padding} to="/calendar">X Effect Calendar</Link>
-				<Link style={padding} to="/journals">Journals</Link>
-			</div>
+		<div className="container">
+			<Router>
+				<div>
+					<Link style={padding} to="/calendar">X Effect Calendar</Link>
+					<Link style={padding} to="/journals">Journals</Link>
+				</div>
 
-			<Switch>
-				<Route path="/calendar">
-					<XEffectCalendar/>
-				</Route>
-				<Route path="/journals">
-					<MasterDetail/>
-				</Route>
-			</Switch>
-		</Router>
+				<Switch>
+					<Route path="/calendar">
+						<XEffectCalendar/>
+					</Route>
+					<Route path="/journals">
+						<MasterDetail/>
+					</Route>
+				</Switch>
+			</Router>
+		</div>
 	)
 }
 
