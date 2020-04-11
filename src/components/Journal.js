@@ -48,16 +48,16 @@ const Journal = ({ journal }) => {
 				<h2>{journal.date}</h2>
 			</div>
 
-			{journal.todos !== [] && todosDisplay()}
+			{journal.todos.length !== 0 && todosDisplay()}
 
 			<div>
 				<h3>How is your day?</h3>
 				{journal.reflection}
 			</div>
 
-			{journal.book_summaries !== [] && bookSummariesDisplay()}
+			{journal.book_summaries.length !== 0 && bookSummariesDisplay()}
 
-			{journal.words_of_today !== [] && todayWordsDisplay()}
+			{journal.words_of_today.length !== 0 && todayWordsDisplay()}
 
 		</li>
 	)
