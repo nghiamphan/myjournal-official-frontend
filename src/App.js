@@ -8,6 +8,7 @@ import XEffectCalendar from './components/XEffectCalendar'
 import Journals from './components/Journals'
 import AddJournal from './components/AddJournal'
 import { initializeJournals } from './reducers/journalReducer'
+import DateList from './components/DateList'
 
 const App = () => {
 
@@ -32,8 +33,7 @@ const App = () => {
 					<XEffectCalendar/>
 				</Route>
 				<Route path="/journals">
-					<Journals/>
-					<AddJournal/>
+					<DateList/>
 				</Route>
 			</Switch>
 		</Router>
