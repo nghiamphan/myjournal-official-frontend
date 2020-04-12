@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createJournal } from '../reducers/journalReducer'
+import { createJournal } from '../reducers/journalsReducer'
 
 const generateId = (array) => {
 	if (array.length === 0 || array[array.length-1].id === undefined) {

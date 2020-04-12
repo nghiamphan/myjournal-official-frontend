@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	BrowserRouter as Router,
 	Switch, Route, Link
@@ -7,13 +7,18 @@ import {
 import XEffectCalendar from './components/XEffectCalendar'
 import { initializeJournals } from './reducers/journalsReducer'
 import MasterDetail from './components/MasterDetail'
+import { setDisplayedJournal } from './reducers/displayedJournalReducer'
 
 const App = () => {
+
+	const journals = useSelector(state => state.journals)
+	const firstDisplayedJournalId = (journals && journals.length > 0) ? journals[journals.length-1].id : null
 
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(initializeJournals())
-	}, [dispatch])
+		dispatch(setDisplayedJournal(firstDisplayedJournalId))
+	}, [dispatch, firstDisplayedJournalId])
 
 	const padding = {
 		padding: 5
