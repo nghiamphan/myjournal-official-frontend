@@ -16,6 +16,7 @@ const XEffectCalendar = () => {
 				day.setMinutes(day.getTimezoneOffset())
 				days.push(day)
 			}
+			return null
 		})
 	}
 
