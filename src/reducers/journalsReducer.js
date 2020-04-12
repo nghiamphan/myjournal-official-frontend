@@ -9,6 +9,8 @@ const journalsReducer = (state = [], action) => {
 		newState.sort((x, y) => x.date > y.date ? 1 : -1)
 		return newState
 	}
+	case 'DELETE_JOURNAL':
+		return state.filter(journal => journal.id !== action.id)
 	default:
 		return state
 	}
@@ -31,6 +33,16 @@ export const createJournal = (journalObject) => {
 		dispatch({
 			type: 'NEW_JOURNAL',
 			data: newJournal
+		})
+	}
+}
+
+export const deleteJournal = id => {
+	return async dispatch => {
+		await journalService.deleteJournal(id)
+		dispatch({
+			type: 'DELETE_JOURNAL',
+			id
 		})
 	}
 }

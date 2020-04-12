@@ -4,6 +4,7 @@ import DateList from './DateList'
 import Journal from './Journal'
 import AddJournal from './AddJournal'
 import { setDisplayedJournal } from '../reducers/displayedJournalReducer'
+import { deleteJournal } from '../reducers/journalsReducer'
 
 const MasterDetail = () => {
 	const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const MasterDetail = () => {
 				</div>
 				<div className="col-9">
 					{displayedJournal && <button onClick={() => dispatch(setDisplayedJournal(null))}>write new journal</button>}
+					{displayedJournal && <button onClick={() => dispatch(deleteJournal(displayedJournalId))}>delete journal</button>}
 					{displayedJournal && <Journal journal={displayedJournal}/>}
 					{!displayedJournal && <AddJournal/>}
 				</div>
