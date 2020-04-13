@@ -20,6 +20,8 @@ const journalsReducer = (state = initialState, action) => {
 			displayedJournalId: action.data.id
 		}
 	}
+	case 'UPDATE_JOURNAL':
+		return { ...state, journals: state.journals.map(journal => journal.id === action.data.id ? action.data : journal) }
 	case 'DELETE_JOURNAL': {
 		let nextDisplayedJournalId = null
 		for (let i = 0; i < state.journals.length; i++) {
@@ -63,6 +65,16 @@ export const createJournal = (journalObject) => {
 		dispatch({
 			type: 'CREATE_JOURNAL',
 			data: newJournal
+		})
+	}
+}
+
+export const updateJournal = (id, journalObject) => {
+	return async dispatch => {
+		const updatedJournal = await journalService.updateJournal(id, journalObject)
+		dispatch({
+			type: 'UPDATE_JOURNAL',
+			data: updatedJournal
 		})
 	}
 }

@@ -12,6 +12,11 @@ const createJournal = async (journalObject) => {
 	return response.data
 }
 
+const updateJournal = async (id, journalObject) => {
+	const response = await axios.put(`${baseUrl}/${id}`, journalObject)
+	return response.data
+}
+
 const deleteJournal = async id => {
 	const response = await axios.delete(`${baseUrl}/${id}`)
 	return response.data
@@ -20,5 +25,6 @@ const deleteJournal = async id => {
 export default {
 	getAll,
 	createJournal,
+	updateJournal,
 	deleteJournal
 }
