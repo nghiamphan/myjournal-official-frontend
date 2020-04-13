@@ -12,7 +12,7 @@ const journalsReducer = (state = initialState, action) => {
 	case 'CREATE_JOURNAL': {
 		const newJournals = state.journals.concat(action.data)
 			.sort((x, y) => x.date > y.date ? 1 : -1)
-		return { ...state, journals: newJournals }
+		return { journals: newJournals, displayedJournalId: action.data.id }
 	}
 	case 'DELETE_JOURNAL':
 		return { ...state, journals: state.journals.filter(journal => journal.id !== action.id) }
@@ -40,10 +40,6 @@ export const createJournal = (journalObject) => {
 		dispatch({
 			type: 'CREATE_JOURNAL',
 			data: newJournal
-		})
-		dispatch({
-			type: 'SET_DISPLAYED_JOURNAL',
-			id: newJournal.id
 		})
 	}
 }
