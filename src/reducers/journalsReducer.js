@@ -20,8 +20,25 @@ const journalsReducer = (state = initialState, action) => {
 			displayedJournalId: action.data.id
 		}
 	}
-	case 'DELETE_JOURNAL':
-		return { ...state, journals: state.journals.filter(journal => journal.id !== action.id) }
+	case 'DELETE_JOURNAL': {
+		let nextDisplayedJournalId = null
+		for (let i = 0; i < state.journals.length; i++) {
+			const journal = state.journals[i]
+			if (journal.id === action.id) {
+				if (i < state.journals.length - 1) {
+					nextDisplayedJournalId = state.journals[i+1].id
+					break
+				} else if (i > 0) {
+					nextDisplayedJournalId = state.journals[i-1].id
+					break
+				}
+			}
+		}
+		return {
+			journals: state.journals.filter(journal => journal.id !== action.id),
+			displayedJournalId: nextDisplayedJournalId
+		}
+	}
 	case 'SET_DISPLAYED_JOURNAL':
 		return { ...state, displayedJournalId: action.id }
 	default:
