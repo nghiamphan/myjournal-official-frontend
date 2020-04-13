@@ -2,12 +2,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import displayedJournalReducer from './reducers/displayedJournalReducer'
 import journalsReducer from './reducers/journalsReducer'
 
 const reducer = combineReducers({
-	displayedJournal: displayedJournalReducer,
-	journals: journalsReducer
+	journalsRedux: journalsReducer
 })
 
 const store = createStore(

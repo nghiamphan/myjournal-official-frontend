@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Calendar from 'react-calendar'
 
 const XEffectCalendar = () => {
-	const journals = useSelector(state => state.journals)
+	const journals = useSelector(state => state.journalsRedux.journals)
 
 	let days = []
 	// When compare days in sorted array 'days' and active days displayed in the calendar, 'cur' is the position of the first item in 'days' that is not yet smaller than the currently compared active day in the calendar.

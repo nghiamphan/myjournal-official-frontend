@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import DateList from './DateList'
 import Journal from './Journal'
 import AddJournal from './AddJournal'
-import { setDisplayedJournal } from '../reducers/displayedJournalReducer'
-import { deleteJournal } from '../reducers/journalsReducer'
+import { deleteJournal, setDisplayedJournal } from '../reducers/journalsReducer'
 
 const MasterDetail = () => {
 	const dispatch = useDispatch()
-	const journals = useSelector(state => state.journals)
-	const displayedJournalId = useSelector(state => state.displayedJournal)
+	const journals = useSelector(state => state.journalsRedux.journals)
+	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
 	const displayedJournal = displayedJournalId ? journals.find(journal => journal.id === displayedJournalId) : null
 
 	return (

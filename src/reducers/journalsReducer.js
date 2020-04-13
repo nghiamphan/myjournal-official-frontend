@@ -1,15 +1,23 @@
 import journalService from '../services/journalService'
 
-const journalsReducer = (state = [], action) => {
+const initialState = {
+	journals: [],
+	displayedJournalId: null
+}
+
+const journalsReducer = (state = initialState, action) => {
 	switch (action.type) {
 	case 'INIT_JOURNALS':
-		return action.data
+		return { ...state, journals: action.data }
 	case 'CREATE_JOURNAL': {
-		return state.concat(action.data)
+		const newJournals = state.journals.concat(action.data)
 			.sort((x, y) => x.date > y.date ? 1 : -1)
+		return { ...state, journals: newJournals }
 	}
 	case 'DELETE_JOURNAL':
-		return state.filter(journal => journal.id !== action.id)
+		return { ...state, journals: state.journals.filter(journal => journal.id !== action.id) }
+	case 'SET_DISPLAYED_JOURNAL':
+		return { ...state, displayedJournalId: action.id }
 	default:
 		return state
 	}
@@ -43,6 +51,13 @@ export const deleteJournal = id => {
 			type: 'DELETE_JOURNAL',
 			id
 		})
+	}
+}
+
+export const setDisplayedJournal = (id) => {
+	return {
+		type: 'SET_DISPLAYED_JOURNAL',
+		id
 	}
 }
 
