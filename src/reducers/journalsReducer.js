@@ -8,11 +8,17 @@ const initialState = {
 const journalsReducer = (state = initialState, action) => {
 	switch (action.type) {
 	case 'INIT_JOURNALS':
-		return { ...state, journals: action.data }
+		return {
+			journals: action.data,
+			displayedJournalId: action.data.length > 0 ? action.data[action.data.length-1].id : null
+		}
 	case 'CREATE_JOURNAL': {
 		const newJournals = state.journals.concat(action.data)
 			.sort((x, y) => x.date > y.date ? 1 : -1)
-		return { journals: newJournals, displayedJournalId: action.data.id }
+		return {
+			journals: newJournals,
+			displayedJournalId: action.data.id
+		}
 	}
 	case 'DELETE_JOURNAL':
 		return { ...state, journals: state.journals.filter(journal => journal.id !== action.id) }
