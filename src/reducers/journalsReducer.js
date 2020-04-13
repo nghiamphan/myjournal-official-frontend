@@ -41,6 +41,10 @@ export const createJournal = (journalObject) => {
 			type: 'CREATE_JOURNAL',
 			data: newJournal
 		})
+		dispatch({
+			type: 'SET_DISPLAYED_JOURNAL',
+			id: newJournal.id
+		})
 	}
 }
 
