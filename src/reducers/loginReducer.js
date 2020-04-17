@@ -1,6 +1,6 @@
 import loginService from '../services/loginService'
 
-const loggedInUser = window.localStorage.getItem('loggedInMyJournalAppUser')
+const loggedInUser = JSON.parse(window.localStorage.getItem('loggedInMyJournalAppUser'))
 
 const loginReducer = (state = loggedInUser, action) => {
 	switch (action.type) {
