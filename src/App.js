@@ -8,6 +8,7 @@ import XEffectCalendar from './components/XEffectCalendar'
 import { initializeJournals } from './reducers/journalsReducer'
 import MasterDetail from './components/MasterDetail'
 import Login from './components/Login'
+import journalService from './services/journalService'
 
 const App = () => {
 
@@ -18,6 +19,9 @@ const App = () => {
 	}, [dispatch])
 	// user object received from backend contains token, username and password
 	const user = useSelector(state => state.loginRedux)
+	if (user) {
+		journalService.setToken(user.token)
+	}
 
 	const padding = {
 		padding: 5
