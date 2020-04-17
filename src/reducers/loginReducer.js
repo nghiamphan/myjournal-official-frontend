@@ -1,6 +1,8 @@
 import loginService from '../services/loginService'
 
-const loginReducer = (state = null, action) => {
+const loggedInUser = window.localStorage.getItem('loggedInMyJournalAppUser')
+
+const loginReducer = (state = loggedInUser, action) => {
 	switch (action.type) {
 	case 'USER_LOGIN':
 		return action.user
@@ -17,6 +19,11 @@ export const userLogin = (username, password) => {
 			const user = await loginService.login({
 				username, password
 			})
+
+			window.localStorage.setItem(
+				'loggedInMyJournalAppUser', JSON.stringify(user)
+			)
+
 			dispatch({
 				type: 'USER_LOGIN',
 				user
