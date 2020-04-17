@@ -89,11 +89,15 @@ export const updateJournal = (id, journalObject) => {
 
 export const deleteJournal = id => {
 	return async dispatch => {
-		await journalService.deleteJournal(id)
-		dispatch({
-			type: 'DELETE_JOURNAL',
-			id
-		})
+		try {
+			await journalService.deleteJournal(id)
+			dispatch({
+				type: 'DELETE_JOURNAL',
+				id
+			})
+		} catch (exception) {
+			console.log(exception.message)
+		}
 	}
 }
 
