@@ -1,43 +1,51 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../reducers/loginReducer'
 
 const Login = () => {
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
 	const dispatch = useDispatch()
 
-	const handleLogin = event => {
-		event.preventDefault()
-		dispatch(userLogin(username, password))
+	const { register, handleSubmit, errors } = useForm()
+
+	const handleLogin = (data) => {
+		dispatch(userLogin(data.username, data.password))
 	}
 
 	return (
 		<div>
 			<h2>Login</h2>
 
-			<form onSubmit={handleLogin}>
+			<form onSubmit={handleSubmit(handleLogin)}>
 				<div>
 					username
 					<input
 						type="text"
-						value={username}
-						name="Username"
-						onChange={({ target }) => setUsername(target.value)}
-						// note: parameter is 'target' instead of 'event'; this is destructuring the field 'target' from the object 'event'
+						name="username"
+						ref={register({
+							required: true,
+							minLength: 4
+						})}
 					/>
 				</div>
+				{errors.username && <span>This field is required and needs at least 4 characters.</span>}
 
 				<div>
           password
 					<input
 						type="password"
-						value={password}
-						name="Password"
-						onChange={({ target }) => setPassword(target.value)}
+						name="password"
+						ref={register({
+							required: true,
+							minLength: 4
+						})}
 					/>
 				</div>
-				<button type="submit">login</button>
+				{errors.password && <span>This field is required and needs at least 4 characters.</span>}
+
+				<div>
+					<button type="submit">login</button>
+				</div>
 			</form>
 		</div>
 	)
