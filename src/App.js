@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	BrowserRouter as Router,
-	Switch, Route, Link
+	Switch, Route, Link, Redirect
 } from 'react-router-dom'
 import XEffectCalendar from './components/XEffectCalendar'
 import { initializeJournals } from './reducers/journalsReducer'
 import MasterDetail from './components/MasterDetail'
+import Login from './components/Login'
 
 const App = () => {
 
@@ -15,6 +16,8 @@ const App = () => {
 	useEffect(() => {
 		dispatch(initializeJournals())
 	}, [dispatch])
+	// user object received from backend contains token, username and password
+	const user = useSelector(state => state.loginRedux)
 
 	const padding = {
 		padding: 5
@@ -22,18 +25,23 @@ const App = () => {
 
 	return (
 		<div className="container">
-			<Router>
-				<div>
-					<Link style={padding} to="/calendar">X Effect Calendar</Link>
-					<Link style={padding} to="/journals">Journals</Link>
-				</div>
 
+			<Router>
+				{user &&
+					<div>
+						<Link style={padding} to="/calendar">X Effect Calendar</Link>
+						<Link style={padding} to="/journals">Journals</Link>
+					</div>
+				}
 				<Switch>
+					<Route path="/login">
+						{!user ? <Login/> : <Redirect to="/calendar"/>}
+					</Route>
 					<Route path="/calendar">
-						<XEffectCalendar/>
+						{user ? <XEffectCalendar/> : <Redirect to="/login"/>}
 					</Route>
 					<Route path="/journals">
-						<MasterDetail/>
+						{user ? <MasterDetail/> : <Redirect to="/login"/>}
 					</Route>
 				</Switch>
 			</Router>

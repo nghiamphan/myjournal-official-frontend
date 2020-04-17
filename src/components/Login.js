@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { userLogin } from '../reducers/loginReducer'
 
 const Login = () => {
@@ -7,19 +7,9 @@ const Login = () => {
 	const [password, setPassword] = useState('')
 	const dispatch = useDispatch()
 
-	/* user object received from backend contains token, username and password
-	*/
-	const user = useSelector(state => state.loginRedux)
-
 	const handleLogin = event => {
 		event.preventDefault()
 		dispatch(userLogin(username, password))
-		if (user) {
-			alert('Right credentials')
-		}
-		else {
-			alert('Wrong credentials')
-		}
 	}
 
 	return (
