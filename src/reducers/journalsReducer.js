@@ -61,11 +61,15 @@ export const initializeJournals = () => {
 
 export const createJournal = (journalObject) => {
 	return async dispatch => {
-		const newJournal = await journalService.createJournal(journalObject)
-		dispatch({
-			type: 'CREATE_JOURNAL',
-			data: newJournal
-		})
+		try {
+			const newJournal = await journalService.createJournal(journalObject)
+			dispatch({
+				type: 'CREATE_JOURNAL',
+				data: newJournal
+			})
+		} catch (exception) {
+			console.log(exception.message)
+		}
 	}
 }
 
