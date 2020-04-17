@@ -5,10 +5,11 @@ import {
 	Switch, Route, Link, Redirect
 } from 'react-router-dom'
 import XEffectCalendar from './components/XEffectCalendar'
-import { initializeJournals } from './reducers/journalsReducer'
 import MasterDetail from './components/MasterDetail'
 import Login from './components/Login'
 import journalService from './services/journalService'
+import { initializeJournals } from './reducers/journalsReducer'
+import { userLogout } from './reducers/loginReducer'
 
 const App = () => {
 
@@ -35,6 +36,7 @@ const App = () => {
 					<div>
 						<Link style={padding} to="/calendar">X Effect Calendar</Link>
 						<Link style={padding} to="/journals">Journals</Link>
+						<button onClick={() => dispatch(userLogout())}>logout</button>
 					</div>
 				}
 				<Switch>

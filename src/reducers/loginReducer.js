@@ -6,7 +6,7 @@ const loginReducer = (state = loggedInUser, action) => {
 	switch (action.type) {
 	case 'USER_LOGIN':
 		return action.user
-	case 'REMOVE_LOGGED_IN_USER':
+	case 'USER_LOGOUT':
 		return null
 	default:
 		return state
@@ -35,9 +35,10 @@ export const userLogin = (username, password) => {
 	}
 }
 
-export const removeLoggedInUser = () => {
+export const userLogout = () => {
+	window.localStorage.removeItem('loggedInMyJournalAppUser')
 	return {
-		type: 'REMOVE_LOGGED_IN_USER'
+		type: 'USER_LOGOUT'
 	}
 }
 
