@@ -22,7 +22,10 @@ const createJournal = async (journalObject) => {
 }
 
 const updateJournal = async (id, journalObject) => {
-	const response = await axios.put(`${baseUrl}/${id}`, journalObject)
+	const config = {
+		headers: { Authorization: token }
+	}
+	const response = await axios.put(`${baseUrl}/${id}`, journalObject, config)
 	return response.data
 }
 

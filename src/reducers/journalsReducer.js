@@ -75,11 +75,15 @@ export const createJournal = (journalObject) => {
 
 export const updateJournal = (id, journalObject) => {
 	return async dispatch => {
-		const updatedJournal = await journalService.updateJournal(id, journalObject)
-		dispatch({
-			type: 'UPDATE_JOURNAL',
-			data: updatedJournal
-		})
+		try {
+			const updatedJournal = await journalService.updateJournal(id, journalObject)
+			dispatch({
+				type: 'UPDATE_JOURNAL',
+				data: updatedJournal
+			})
+		} catch (exception) {
+			console.log(exception.message)
+		}
 	}
 }
 
