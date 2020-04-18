@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { createJournal } from '../reducers/journalsReducer'
 
@@ -14,11 +15,11 @@ const padding = {
 	padding: 12
 }
 const AddJournal = () => {
-	const [date, setDate] = useState('')
 	const [todos, setTodos] = useState([])
-	const [reflection, setReflection] = useState('')
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
+
+	const { register, handleSubmit, errors } = useForm()
 
 	const dispatch = useDispatch()
 
@@ -41,10 +42,6 @@ const AddJournal = () => {
 			{ ...todo, done: event.target.checked }
 			: { ...todo, task: event.target.value }
 		setTodos(todos.map(todo => todo.id !== id ? todo : updatedTodo))
-	}
-
-	const handleReflectionChange = event => {
-		setReflection(event.target.value)
 	}
 
 	const addSummary = event => {
@@ -92,28 +89,30 @@ const AddJournal = () => {
 		)
 	}
 
-	const addJournal = event => {
-		event.preventDefault()
+	const addJournal = data => {
+		console.log('data', data)
+		//event.preventDefault()
 		const journalObject = {
-			date: date,
+			date: data.date,
 			todos: todos,
-			reflection: reflection,
+			reflection: data.reflection,
 			book_summaries: bookSummaries,
 			words_of_today: todayWords
 		}
 		dispatch(createJournal(journalObject))
 	}
 	return (
-		<form onSubmit={addJournal}>
+		<form onSubmit={handleSubmit(addJournal)}>
 			<h2>Journal for Today</h2>
 
 			<div>
 				<h3>Date
 					<input
 						type="date"
-						value={date}
-						onChange={(event) => setDate(event.target.value)}/>
+						name="date"
+						ref={register({ required: true })}/>
 				</h3>
+				{errors.date && <span>This field is required</span>}
 			</div>
 
 			<div>
@@ -132,7 +131,13 @@ const AddJournal = () => {
 
 			<div>
 				<h3>How is your day?</h3>
-				<textarea value={reflection} onChange={handleReflectionChange}></textarea>
+				<div>
+					<textarea
+						name="reflection"
+						ref={register({ required: true })}
+					/>
+				</div>
+				{errors.reflection && <span>This field is required</span>}
 			</div>
 
 			<div>
