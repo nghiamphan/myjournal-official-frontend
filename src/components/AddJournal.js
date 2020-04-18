@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { createJournal } from '../reducers/journalsReducer'
 
@@ -15,34 +15,17 @@ const padding = {
 	padding: 12
 }
 const AddJournal = () => {
-	const [todos, setTodos] = useState([])
 	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
-	const { register, handleSubmit, errors } = useForm()
+	const { register, control, handleSubmit, errors } = useForm()
+
+	const todosInputArray = useFieldArray({
+		control,
+		name: 'todos'
+	})
 
 	const dispatch = useDispatch()
-
-	const addTask = event => {
-		event.preventDefault()
-		setTodos(todos.concat({
-			id: generateId(todos),
-			done: false,
-			task: ''
-		}))
-	}
-
-	const deleteTask = id => {
-		setTodos(todos.filter(todo => todo.id !== id))
-	}
-
-	const handleTodosChange = (id, property) => (event) => {
-		const todo = todos.find(n => n.id === id)
-		const updatedTodo = property === 'done' ?
-			{ ...todo, done: event.target.checked }
-			: { ...todo, task: event.target.value }
-		setTodos(todos.map(todo => todo.id !== id ? todo : updatedTodo))
-	}
 
 	const addSummary = event => {
 		event.preventDefault()
@@ -94,7 +77,7 @@ const AddJournal = () => {
 		//event.preventDefault()
 		const journalObject = {
 			date: data.date,
-			todos: todos,
+			todos: data.todos.map((todo, index) => ({ ...todo, id: index })),
 			reflection: data.reflection,
 			book_summaries: bookSummaries,
 			words_of_today: todayWords
@@ -117,12 +100,32 @@ const AddJournal = () => {
 
 			<div>
 				<h3>Todos</h3>
-				<button onClick={addTask}>add a task</button> <br/>
-				{todos.map(todo => (
-					<div key={todo.id}>
-						<input type="checkbox" checked={todo.done} onChange={handleTodosChange(todo.id, 'done')}/>
-						<input value={todo.task} onChange={handleTodosChange(todo.id, 'task')}/>
-						<button onClick={() => deleteTask(todo.id)}>delete</button>
+				<button
+					onClick={event => {
+						event.preventDefault()
+						todosInputArray.append({})
+					}}
+				>
+					add a task
+				</button>
+				<br/>
+
+				{todosInputArray.fields.map((item, index) => (
+					<div key={item.id}>
+						<input
+							type="checkbox"
+							name={`todos[${index}].done`}
+							ref={register()}
+						/>
+						<input
+							name={`todos[${index}].task`}
+							ref={register()}
+						/>
+						<button
+							onClick={() => todosInputArray.remove(index)}
+						>
+							delete
+						</button>
 					</div>
 				))}
 
