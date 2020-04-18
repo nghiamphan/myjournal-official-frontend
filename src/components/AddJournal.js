@@ -1,22 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { createJournal } from '../reducers/journalsReducer'
-
-const generateId = (array) => {
-	if (array.length === 0 || array[array.length-1].id === undefined) {
-		return 0
-	} else {
-		return array[array.length-1].id + 1
-	}
-}
 
 const padding = {
 	padding: 12
 }
 const AddJournal = () => {
-	const [todayWords, setTodayWords] = useState([])
-
 	const { register, control, handleSubmit, errors } = useForm()
 
 	const todosInputArray = useFieldArray({
@@ -29,42 +19,24 @@ const AddJournal = () => {
 		name: 'bookSummaries'
 	})
 
+	const todayWordsInputArray = useFieldArray({
+		control,
+		name: 'todayWords'
+	})
+
 	const dispatch = useDispatch()
 
-	const addWord = event => {
-		event.preventDefault()
-		setTodayWords(todayWords.concat({
-			id: generateId(todayWords),
-			word: '',
-			definition: '',
-		}))
-	}
-
-	const deleteWord = id => {
-		setTodayWords(todayWords.filter(word => word.id !== id))
-	}
-
-	const handleWordsChange = (id, property) => (event) => {
-		const word = todayWords.find(n => n.id === id)
-		const updatedWord = { ...word }
-		updatedWord[property] = event.target.value
-		setTodayWords(todayWords.map(
-			word => word.id !== id ? word : updatedWord)
-		)
-	}
-
 	const addJournal = data => {
-		console.log('data', data)
-		//event.preventDefault()
 		const journalObject = {
 			date: data.date,
 			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
 			reflection: data.reflection,
 			book_summaries: data.bookSummaries ? data.bookSummaries.map((summary, index) => ({ ...summary, id: index })) : [],
-			words_of_today: todayWords
+			words_of_today: data.todayWords ? data.todayWords.map((word, index) => ({ ...word, id: index })) : []
 		}
 		dispatch(createJournal(journalObject))
 	}
+
 	return (
 		<form onSubmit={handleSubmit(addJournal)}>
 			<h2>Journal for Today</h2>
@@ -167,20 +139,35 @@ const AddJournal = () => {
 
 			<div>
 				<h3>Words of the day</h3>
-				<button onClick={addWord}>add a word</button>
-				{todayWords.map(word => (
+				<button
+					onClick={event => {
+						event.preventDefault()
+						todayWordsInputArray.append({})
+					}}
+				>
+					add a word
+				</button>
+
+				{todayWordsInputArray.fields.map((word, index) => (
 					<div
 						key={word.id}
-						style={padding}>
+						style={padding}
+					>
 						<input
 							placeholder="Word"
-							value={word.word}
-							onChange={handleWordsChange(word.id, 'word')}/>
+							name={`todayWords[${index}].word`}
+							ref={register()}
+						/>
 						<input
 							placeholder="Definition..."
-							value={word.definition}
-							onChange={handleWordsChange(word.id, 'definition')}/>
-						<button onClick={() => deleteWord(word.id)}>delete</button>
+							name={`todayWords[${index}].definition`}
+							ref={register()}
+						/>
+						<button
+							onClick={() => todayWordsInputArray.remove(index)}
+						>
+							delete
+						</button>
 					</div>
 				))}
 			</div>
