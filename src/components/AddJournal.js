@@ -15,7 +15,6 @@ const padding = {
 	padding: 12
 }
 const AddJournal = () => {
-	const [bookSummaries, setBookSummaries] = useState([])
 	const [todayWords, setTodayWords] = useState([])
 
 	const { register, control, handleSubmit, errors } = useForm()
@@ -25,30 +24,12 @@ const AddJournal = () => {
 		name: 'todos'
 	})
 
+	const bookSummariesInputArray = useFieldArray({
+		control,
+		name: 'bookSummaries'
+	})
+
 	const dispatch = useDispatch()
-
-	const addSummary = event => {
-		event.preventDefault()
-		setBookSummaries(bookSummaries.concat({
-			id: generateId(bookSummaries),
-			title: '',
-			chapter: '',
-			content: ''
-		}))
-	}
-
-	const deleteSummary = id => {
-		setBookSummaries(bookSummaries.filter(summary => summary.id !== id))
-	}
-
-	const handleSummariesChange = (id, property) => (event) => {
-		const summary = bookSummaries.find(n => n.id === id)
-		const updatedSummary = { ...summary }
-		updatedSummary[property] = event.target.value
-		setBookSummaries(bookSummaries.map(
-			summary => summary.id !== id ? summary : updatedSummary)
-		)
-	}
 
 	const addWord = event => {
 		event.preventDefault()
@@ -77,9 +58,9 @@ const AddJournal = () => {
 		//event.preventDefault()
 		const journalObject = {
 			date: data.date,
-			todos: data.todos.map((todo, index) => ({ ...todo, id: index })),
+			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
 			reflection: data.reflection,
-			book_summaries: bookSummaries,
+			book_summaries: data.bookSummaries ? data.bookSummaries.map((summary, index) => ({ ...summary, id: index })) : [],
 			words_of_today: todayWords
 		}
 		dispatch(createJournal(journalObject))
@@ -93,7 +74,8 @@ const AddJournal = () => {
 					<input
 						type="date"
 						name="date"
-						ref={register({ required: true })}/>
+						ref={register({ required: true })}
+					/>
 				</h3>
 				{errors.date && <span>This field is required</span>}
 			</div>
@@ -145,25 +127,40 @@ const AddJournal = () => {
 
 			<div>
 				<h3>Book Summaries</h3>
-				<button onClick={addSummary}>add a summary</button> <br/>
-				{bookSummaries.map(summary => (
+				<button
+					onClick={event => {
+						event.preventDefault()
+						bookSummariesInputArray.append({})
+					}}
+				>
+					add a summary
+				</button> <br/>
+
+				{bookSummariesInputArray.fields.map((summary, index) => (
 					<div key={summary.id} style={padding}>
 						<div>
 							Title:
 							<input
-								value={summary.title}
-								onChange={handleSummariesChange(summary.id, 'title')}/>
+								name={`bookSummaries[${index}].title`}
+								ref={register()}
+							/>
 							Chapter:
 							<input
-								value={summary.chapter}
-								onChange={handleSummariesChange(summary.id, 'chapter')}/>
+								name={`bookSummaries[${index}].chapter`}
+								ref={register()}
+							/>
 						</div>
 						<textarea
 							placeholder="chapter summary and your thoughts..."
-							value={summary.content}
-							onChange={handleSummariesChange(summary.id, 'content')}/>
+							name={`bookSummaries[${index}].content`}
+							ref={register()}
+						/>
 						<br/>
-						<button onClick={() => deleteSummary(summary.id)}>delete</button>
+						<button
+							onClick={() => bookSummariesInputArray.remove(index)}
+						>
+							delete
+						</button>
 					</div>
 				))}
 			</div>
