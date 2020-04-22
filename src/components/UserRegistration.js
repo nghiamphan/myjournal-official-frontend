@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import userRegistrationService from '../services/userRegistrationService'
 import { useHistory } from 'react-router-dom'
 
 const UserRegistration = () => {
+	const [error, setError] = useState(null)
 	const history = useHistory()
 
 	const { register, handleSubmit, errors } = useForm()
 
-	const handleRegistration = data => {
-		userRegistrationService.register(data)
-		history.push('/login')
+	const handleRegistration = async data => {
+		try {
+			await userRegistrationService.register(data)
+			history.push('/login')
+		} catch (exception) {
+			if (exception.response.data.error.includes('`username` to be unique')) {
+				setError('Username already exists. Choose another username.')
+			}
+		}
 	}
 
 	return (
@@ -60,6 +67,7 @@ const UserRegistration = () => {
 					<button type="submit">register</button>
 				</div>
 			</form>
+			{<span>{error}</span>}
 		</div>
 	)
 }
