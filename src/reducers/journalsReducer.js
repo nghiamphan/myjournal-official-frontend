@@ -2,7 +2,8 @@ import journalService from '../services/journalService'
 
 const initialState = {
 	journals: [],
-	displayedJournalId: null
+	displayedJournalId: null,
+	journalToUpdateId: null
 }
 
 const journalsReducer = (state = initialState, action) => {
@@ -10,18 +11,24 @@ const journalsReducer = (state = initialState, action) => {
 	case 'INIT_JOURNALS':
 		return {
 			journals: action.data,
-			displayedJournalId: action.data.length > 0 ? action.data[action.data.length-1].id : null
+			displayedJournalId: action.data.length > 0 ? action.data[action.data.length-1].id : null,
+			journalToUpdateId: null
 		}
 	case 'CREATE_JOURNAL': {
 		const newJournals = state.journals.concat(action.data)
 			.sort((x, y) => x.date > y.date ? 1 : -1)
 		return {
 			journals: newJournals,
-			displayedJournalId: action.data.id
+			displayedJournalId: action.data.id,
+			journalToUpdateId: null
 		}
 	}
 	case 'UPDATE_JOURNAL':
-		return { ...state, journals: state.journals.map(journal => journal.id === action.data.id ? action.data : journal) }
+		return {
+			journals: state.journals.map(journal => journal.id === action.data.id ? action.data : journal),
+			displayedJournalId: action.data.id,
+			journalToUpdateId: null
+		}
 	case 'DELETE_JOURNAL': {
 		let nextDisplayedJournalId = null
 		for (let i = 0; i < state.journals.length; i++) {
@@ -38,11 +45,18 @@ const journalsReducer = (state = initialState, action) => {
 		}
 		return {
 			journals: state.journals.filter(journal => journal.id !== action.id),
-			displayedJournalId: nextDisplayedJournalId
+			displayedJournalId: nextDisplayedJournalId,
+			journalToUpdateId: null
 		}
 	}
 	case 'SET_DISPLAYED_JOURNAL':
 		return { ...state, displayedJournalId: action.id }
+	case 'SET_JOURNAL_TO_UPDATE':
+		return {
+			...state,
+			displayedJournalId: null,
+			journalToUpdateId: action.id
+		}
 	default:
 		return state
 	}
@@ -101,9 +115,16 @@ export const deleteJournal = id => {
 	}
 }
 
-export const setDisplayedJournal = (id) => {
+export const setDisplayedJournalId = (id) => {
 	return {
 		type: 'SET_DISPLAYED_JOURNAL',
+		id
+	}
+}
+
+export const setJournalToUpdateId = (id) => {
+	return {
+		type: 'SET_JOURNAL_TO_UPDATE',
 		id
 	}
 }

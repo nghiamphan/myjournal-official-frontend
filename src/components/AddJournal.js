@@ -1,13 +1,19 @@
 import React from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { createJournal } from '../reducers/journalsReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { createJournal, updateJournal } from '../reducers/journalsReducer'
 
 const padding = {
 	padding: 12
 }
 const AddJournal = () => {
-	const { register, control, handleSubmit, errors } = useForm()
+	const journals = useSelector(state => state.journalsRedux.journals)
+	const journalToUpdateId = useSelector(state => state.journalsRedux.journalToUpdateId)
+	const journalToUpdate = journalToUpdateId ? journals.find(journal => journal.id === journalToUpdateId) : null
+
+	const { register, control, handleSubmit, errors } = useForm({
+		defaultValues: journalToUpdate ? journalToUpdate : ''
+	})
 
 	const todosInputArray = useFieldArray({
 		control,
@@ -16,12 +22,12 @@ const AddJournal = () => {
 
 	const bookSummariesInputArray = useFieldArray({
 		control,
-		name: 'bookSummaries'
+		name: 'book_summaries'
 	})
 
 	const todayWordsInputArray = useFieldArray({
 		control,
-		name: 'todayWords'
+		name: 'words_of_today'
 	})
 
 	const dispatch = useDispatch()
@@ -31,10 +37,13 @@ const AddJournal = () => {
 			date: data.date,
 			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
 			reflection: data.reflection,
-			book_summaries: data.bookSummaries ? data.bookSummaries.map((summary, index) => ({ ...summary, id: index })) : [],
-			words_of_today: data.todayWords ? data.todayWords.map((word, index) => ({ ...word, id: index })) : []
+			book_summaries: data.book_summaries ? data.book_summaries.map((summary, index) => ({ ...summary, id: index })) : [],
+			words_of_today: data.words_of_today ? data.words_of_today.map((word, index) => ({ ...word, id: index })) : []
 		}
-		dispatch(createJournal(journalObject))
+
+		journalToUpdate
+			? dispatch(updateJournal(journalToUpdateId, journalObject))
+			: dispatch(createJournal(journalObject))
 	}
 
 	return (
@@ -113,18 +122,18 @@ const AddJournal = () => {
 						<div>
 							Title:
 							<input
-								name={`bookSummaries[${index}].title`}
+								name={`book_summaries[${index}].title`}
 								ref={register()}
 							/>
 							Chapter:
 							<input
-								name={`bookSummaries[${index}].chapter`}
+								name={`book_summaries[${index}].chapter`}
 								ref={register()}
 							/>
 						</div>
 						<textarea
 							placeholder="chapter summary and your thoughts..."
-							name={`bookSummaries[${index}].content`}
+							name={`book_summaries[${index}].content`}
 							ref={register()}
 						/>
 						<br/>
@@ -155,12 +164,12 @@ const AddJournal = () => {
 					>
 						<input
 							placeholder="Word"
-							name={`todayWords[${index}].word`}
+							name={`words_of_today[${index}].word`}
 							ref={register()}
 						/>
 						<input
 							placeholder="Definition..."
-							name={`todayWords[${index}].definition`}
+							name={`words_of_today[${index}].definition`}
 							ref={register()}
 						/>
 						<button

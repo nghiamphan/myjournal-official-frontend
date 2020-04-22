@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import DateList from './DateList'
 import Journal from './Journal'
 import AddJournal from './AddJournal'
-import { deleteJournal, setDisplayedJournal } from '../reducers/journalsReducer'
+import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../reducers/journalsReducer'
 
 const MasterDetail = () => {
 	const dispatch = useDispatch()
@@ -14,10 +14,10 @@ const MasterDetail = () => {
 	const detailHeader = () => {
 		return (
 			<div>
-				<button onClick={() => dispatch(setDisplayedJournal(null))}>write new journal</button>
+				<button onClick={() => dispatch(setDisplayedJournalId(null))}>write new journal</button>
 				{displayedJournal &&
 				<>
-					<button onClick={() => console.log('to be updated')}>update journal</button>
+					<button onClick={() => dispatch(setJournalToUpdateId(displayedJournalId))}>update journal</button>
 					<button onClick={() => dispatch(deleteJournal(displayedJournalId))}>delete journal</button>
 				</>
 				}
