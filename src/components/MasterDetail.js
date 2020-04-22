@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DateList from './DateList'
 import Journal from './Journal'
@@ -6,18 +6,32 @@ import AddAndUpdateJournal from './AddAndUpdateJournal'
 import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../reducers/journalsReducer'
 
 const MasterDetail = () => {
+	const [displayForm, setDisplayForm] = useState(false)
+
 	const dispatch = useDispatch()
 	const journals = useSelector(state => state.journalsRedux.journals)
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
 	const displayedJournal = displayedJournalId ? journals.find(journal => journal.id === displayedJournalId) : null
 
+	const addJournal = () => {
+		dispatch(setDisplayedJournalId(null))
+		setDisplayForm(true)
+	}
+
+	const updateJournal = () => {
+		dispatch(setJournalToUpdateId(displayedJournalId))
+		setDisplayForm(true)
+	}
+
 	const detailHeader = () => {
 		return (
 			<div>
-				<button onClick={() => dispatch(setDisplayedJournalId(null))}>write new journal</button>
+				{(displayedJournal || !displayForm) &&
+					<button onClick={addJournal}>write new journal</button>
+				}
 				{displayedJournal &&
 				<>
-					<button onClick={() => dispatch(setJournalToUpdateId(displayedJournalId))}>update journal</button>
+					<button onClick={updateJournal}>update journal</button>
 					<button onClick={() => dispatch(deleteJournal(displayedJournalId))}>delete journal</button>
 				</>
 				}
@@ -36,7 +50,9 @@ const MasterDetail = () => {
 					{detailHeader()}
 					{displayedJournal
 						? <Journal journal={displayedJournal}/>
-						: <AddAndUpdateJournal/>
+						: displayForm
+							? <AddAndUpdateJournal/>
+							: <p>Write your first journal...</p>
 					}
 				</div>
 
