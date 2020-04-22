@@ -50,7 +50,11 @@ const journalsReducer = (state = initialState, action) => {
 		}
 	}
 	case 'SET_DISPLAYED_JOURNAL':
-		return { ...state, displayedJournalId: action.id }
+		return {
+			...state,
+			displayedJournalId: action.id,
+			journalToUpdateId: null
+		}
 	case 'SET_JOURNAL_TO_UPDATE':
 		return {
 			...state,

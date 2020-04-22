@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { createJournal, updateJournal } from '../reducers/journalsReducer'
+import { createJournal, updateJournal, setDisplayedJournalId } from '../reducers/journalsReducer'
 
 const padding = {
 	padding: 12
@@ -60,8 +60,19 @@ const AddAndUpdateJournal = () => {
 			: dispatch(createJournal(journalObject))
 	}
 
+	const onCancel = () => {
+		journalToUpdate
+			? dispatch(setDisplayedJournalId(journalToUpdateId))
+			: dispatch(setDisplayedJournalId(journals[journals.length-1].id))
+	}
+
 	return (
 		<form onSubmit={handleSubmit(addAndUpdateJournal)}>
+
+			<div style={padding}>
+				<button type="submit">save</button>
+				<button type="reset" onClick={onCancel}>cancel</button>
+			</div>
 			<span>{error}</span>
 
 			<div>
@@ -193,10 +204,6 @@ const AddAndUpdateJournal = () => {
 						</button>
 					</div>
 				))}
-			</div>
-
-			<div style={padding}>
-				<button type="submit">save</button>
 			</div>
 
 		</form>
