@@ -11,6 +11,20 @@ const MasterDetail = () => {
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
 	const displayedJournal = displayedJournalId ? journals.find(journal => journal.id === displayedJournalId) : null
 
+	const detailHeader = () => {
+		return (
+			<div>
+				<button onClick={() => dispatch(setDisplayedJournal(null))}>write new journal</button>
+				{displayedJournal &&
+				<>
+					<button onClick={() => console.log('to be updated')}>update journal</button>
+					<button onClick={() => dispatch(deleteJournal(displayedJournalId))}>delete journal</button>
+				</>
+				}
+			</div>
+		)
+	}
+
 	return (
 		<>
 			<h1>My Journal</h1>
@@ -19,10 +33,11 @@ const MasterDetail = () => {
 					<DateList/>
 				</div>
 				<div className="col-9">
-					{displayedJournal && <button onClick={() => dispatch(setDisplayedJournal(null))}>write new journal</button>}
-					{displayedJournal && <button onClick={() => dispatch(deleteJournal(displayedJournalId))}>delete journal</button>}
-					{displayedJournal && <Journal journal={displayedJournal}/>}
-					{!displayedJournal && <AddJournal/>}
+					{detailHeader()}
+					{displayedJournal
+						? <Journal journal={displayedJournal}/>
+						: <AddJournal/>
+					}
 				</div>
 
 			</div>
