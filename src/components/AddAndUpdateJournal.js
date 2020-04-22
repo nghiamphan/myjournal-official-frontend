@@ -109,6 +109,25 @@ const AddAndUpdateJournal = () => {
 							name={`todos[${index}].task`}
 							ref={register()}
 						/>
+
+						<button
+							onClick={event => {
+								event.preventDefault()
+								todosInputArray.swap(index, Math.max(0, index-1))
+							}}
+						>
+							move up
+						</button>
+
+						<button
+							onClick={event => {
+								event.preventDefault()
+								todosInputArray.swap(index, Math.min(todosInputArray.fields.length-1, index+1))
+							}}
+						>
+							move down
+						</button>
+
 						<button
 							onClick={() => todosInputArray.remove(index)}
 						>
