@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { createJournal, updateJournal, setDisplayedJournalId } from '../reducers/journalsReducer'
+import { FirstAddButton, ItemButtons } from './buttons/JournalFormButtons'
 
 const padding = {
 	padding: 12
@@ -89,16 +90,11 @@ const AddAndUpdateJournal = () => {
 			<div>
 				<h3>Todos</h3>
 				{todosInputArray.fields.length === 0 &&
-					<button
-						onClick={event => {
-							event.preventDefault()
-							todosInputArray.append({})
-						}}
-					>
-						add a task
-					</button>
+					<FirstAddButton
+						inputArray={todosInputArray}
+						buttonText="add a task"
+					/>
 				}
-				{/* <br/> */}
 
 				{todosInputArray.fields.map((item, index) => (
 					<div key={item.id}>
@@ -112,38 +108,10 @@ const AddAndUpdateJournal = () => {
 							ref={register()}
 						/>
 
-						<button
-							onClick={event => {
-								event.preventDefault()
-								todosInputArray.swap(index, Math.max(0, index-1))
-							}}
-						>
-							move up
-						</button>
-
-						<button
-							onClick={event => {
-								event.preventDefault()
-								todosInputArray.swap(index, Math.min(todosInputArray.fields.length-1, index+1))
-							}}
-						>
-							move down
-						</button>
-
-						<button
-							onClick={event => {
-								event.preventDefault()
-								todosInputArray.insert(index+1)
-							}}
-						>
-							add
-						</button>
-
-						<button
-							onClick={() => todosInputArray.remove(index)}
-						>
-							delete
-						</button>
+						<ItemButtons
+							inputArray={todosInputArray}
+							index={index}
+						/>
 					</div>
 				))}
 
