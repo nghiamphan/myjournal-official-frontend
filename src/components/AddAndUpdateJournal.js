@@ -88,15 +88,17 @@ const AddAndUpdateJournal = () => {
 
 			<div>
 				<h3>Todos</h3>
-				<button
-					onClick={event => {
-						event.preventDefault()
-						todosInputArray.append({})
-					}}
-				>
-					add a task
-				</button>
-				<br/>
+				{todosInputArray.fields.length === 0 &&
+					<button
+						onClick={event => {
+							event.preventDefault()
+							todosInputArray.append({})
+						}}
+					>
+						add a task
+					</button>
+				}
+				{/* <br/> */}
 
 				{todosInputArray.fields.map((item, index) => (
 					<div key={item.id}>
@@ -126,6 +128,15 @@ const AddAndUpdateJournal = () => {
 							}}
 						>
 							move down
+						</button>
+
+						<button
+							onClick={event => {
+								event.preventDefault()
+								todosInputArray.insert(index+1)
+							}}
+						>
+							add
 						</button>
 
 						<button
