@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DateList from './DateList'
 import Journal from './Journal'
-import AddJournal from './AddJournal'
+import AddAndUpdateJournal from './AddAndUpdateJournal'
 import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../reducers/journalsReducer'
 
 const MasterDetail = () => {
@@ -36,7 +36,7 @@ const MasterDetail = () => {
 					{detailHeader()}
 					{displayedJournal
 						? <Journal journal={displayedJournal}/>
-						: <AddJournal/>
+						: <AddAndUpdateJournal/>
 					}
 				</div>
 

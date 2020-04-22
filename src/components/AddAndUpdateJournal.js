@@ -6,7 +6,7 @@ import { createJournal, updateJournal } from '../reducers/journalsReducer'
 const padding = {
 	padding: 12
 }
-const AddJournal = () => {
+const AddAndUpdateJournal = () => {
 	const journals = useSelector(state => state.journalsRedux.journals)
 	const journalToUpdateId = useSelector(state => state.journalsRedux.journalToUpdateId)
 	const journalToUpdate = journalToUpdateId ? journals.find(journal => journal.id === journalToUpdateId) : null
@@ -32,7 +32,7 @@ const AddJournal = () => {
 
 	const dispatch = useDispatch()
 
-	const addJournal = data => {
+	const addAndUpdateJournal = data => {
 		const journalObject = {
 			date: data.date,
 			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
@@ -47,7 +47,7 @@ const AddJournal = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(addJournal)}>
+		<form onSubmit={handleSubmit(addAndUpdateJournal)}>
 			<h2>Journal for Today</h2>
 
 			<div>
@@ -189,4 +189,4 @@ const AddJournal = () => {
 	)
 }
 
-export default AddJournal
+export default AddAndUpdateJournal
