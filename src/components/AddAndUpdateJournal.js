@@ -131,14 +131,12 @@ const AddAndUpdateJournal = () => {
 
 			<div>
 				<h3>Book Summaries</h3>
-				<button
-					onClick={event => {
-						event.preventDefault()
-						bookSummariesInputArray.append({})
-					}}
-				>
-					add a summary
-				</button> <br/>
+				{bookSummariesInputArray.fields.length === 0 &&
+					<FirstAddButton
+						inputArray={bookSummariesInputArray}
+						buttonText="add a summary"
+					/>
+				}
 
 				{bookSummariesInputArray.fields.map((summary, index) => (
 					<div key={summary.id} style={padding}>
@@ -159,12 +157,12 @@ const AddAndUpdateJournal = () => {
 							name={`book_summaries[${index}].content`}
 							ref={register()}
 						/>
+
 						<br/>
-						<button
-							onClick={() => bookSummariesInputArray.remove(index)}
-						>
-							delete
-						</button>
+						<ItemButtons
+							inputArray={bookSummariesInputArray}
+							index={index}
+						/>
 					</div>
 				))}
 			</div>
