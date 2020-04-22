@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { createJournal, updateJournal } from '../reducers/journalsReducer'
@@ -7,6 +7,8 @@ const padding = {
 	padding: 12
 }
 const AddAndUpdateJournal = () => {
+	const [error, setError] = useState(null)
+
 	const journals = useSelector(state => state.journalsRedux.journals)
 	const journalToUpdateId = useSelector(state => state.journalsRedux.journalToUpdateId)
 	const journalToUpdate = journalToUpdateId ? journals.find(journal => journal.id === journalToUpdateId) : null
@@ -33,6 +35,18 @@ const AddAndUpdateJournal = () => {
 	const dispatch = useDispatch()
 
 	const addAndUpdateJournal = data => {
+		const duplicatedDate = updateJournal
+			? journals.find(journal => journal.date === data.date && journal.id !== journalToUpdateId)
+			: journals.find(journal => journal.date === data.date)
+		if (duplicatedDate) {
+			if (journalToUpdate) {
+				setError(`A journal for ${data.date} already exists. Please choose another date for the edited journal.`)
+			} else {
+				setError(`A journal for ${data.date} already exists. If you want to edit the journal for ${data.date}, please choose update function instead.`)
+			}
+			return
+		}
+
 		const journalObject = {
 			date: data.date,
 			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
@@ -48,7 +62,7 @@ const AddAndUpdateJournal = () => {
 
 	return (
 		<form onSubmit={handleSubmit(addAndUpdateJournal)}>
-			<h2>Journal for Today</h2>
+			<span>{error}</span>
 
 			<div>
 				<h3>Date
