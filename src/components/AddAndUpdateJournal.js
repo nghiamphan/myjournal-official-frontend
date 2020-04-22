@@ -169,14 +169,12 @@ const AddAndUpdateJournal = () => {
 
 			<div>
 				<h3>Words of the day</h3>
-				<button
-					onClick={event => {
-						event.preventDefault()
-						todayWordsInputArray.append({})
-					}}
-				>
-					add a word
-				</button>
+				{todayWordsInputArray.fields.length === 0 &&
+					<FirstAddButton
+						inputArray={todayWordsInputArray}
+						buttonText="add a word"
+					/>
+				}
 
 				{todayWordsInputArray.fields.map((word, index) => (
 					<div
@@ -193,11 +191,11 @@ const AddAndUpdateJournal = () => {
 							name={`words_of_today[${index}].definition`}
 							ref={register()}
 						/>
-						<button
-							onClick={() => todayWordsInputArray.remove(index)}
-						>
-							delete
-						</button>
+
+						<ItemButtons
+							inputArray={todayWordsInputArray}
+							index={index}
+						/>
 					</div>
 				))}
 			</div>
