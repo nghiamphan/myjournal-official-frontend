@@ -1,14 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import userRegistrationService from '../services/userRegistrationService'
+import { useHistory } from 'react-router-dom'
 
 const UserRegistration = () => {
-	const dispatch = useDispatch()
+	const history = useHistory()
 
 	const { register, handleSubmit, errors } = useForm()
 
 	const handleRegistration = data => {
-		console.log(data)
+		userRegistrationService.register(data)
+		history.push('/login')
 	}
 
 	return (
@@ -39,7 +41,7 @@ const UserRegistration = () => {
 						})}
 					/>
 				</div>
-				{errors.username && <span>This field is required.</span>}
+				{errors.name && <span>This field is required.</span>}
 
 				<div>
           password
