@@ -35,6 +35,8 @@ const AddAndUpdateJournal = () => {
 
 	const dispatch = useDispatch()
 
+	const errorText = 'This field is required.'
+
 	const addAndUpdateJournal = data => {
 		const duplicatedDate = updateJournal
 			? journals.find(journal => journal.date === data.date && journal.id !== journalToUpdateId)
@@ -84,7 +86,7 @@ const AddAndUpdateJournal = () => {
 						ref={register({ required: true })}
 					/>
 				</h3>
-				{errors.date && <span>This field is required</span>}
+				{errors.date && <span>{errorText}</span>}
 			</div>
 
 			<div>
@@ -105,7 +107,10 @@ const AddAndUpdateJournal = () => {
 						/>
 						<input
 							name={`todos[${index}].task`}
-							ref={register()}
+							ref={register({
+								required: true,
+								pattern: /[A-Za-z0-9]+/
+							})}
 						/>
 
 						<ItemButtons
@@ -115,6 +120,7 @@ const AddAndUpdateJournal = () => {
 					</div>
 				))}
 
+				{errors.todos && <span>{errorText}</span>}
 			</div>
 
 
@@ -126,7 +132,7 @@ const AddAndUpdateJournal = () => {
 						ref={register({ required: true })}
 					/>
 				</div>
-				{errors.reflection && <span>This field is required</span>}
+				{errors.reflection && <span>{errorText}</span>}
 			</div>
 
 			<div>
@@ -144,7 +150,10 @@ const AddAndUpdateJournal = () => {
 							Title:
 							<input
 								name={`book_summaries[${index}].title`}
-								ref={register()}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
 							/>
 							Chapter:
 							<input
@@ -155,7 +164,10 @@ const AddAndUpdateJournal = () => {
 						<textarea
 							placeholder="chapter summary and your thoughts..."
 							name={`book_summaries[${index}].content`}
-							ref={register()}
+							ref={register({
+								required: true,
+								pattern: /[A-Za-z0-9]+/
+							})}
 						/>
 
 						<br/>
@@ -165,6 +177,8 @@ const AddAndUpdateJournal = () => {
 						/>
 					</div>
 				))}
+
+				{errors.book_summaries && <span>{errorText}</span>}
 			</div>
 
 			<div>
@@ -184,12 +198,18 @@ const AddAndUpdateJournal = () => {
 						<input
 							placeholder="Word"
 							name={`words_of_today[${index}].word`}
-							ref={register()}
+							ref={register({
+								required: true,
+								pattern: /[A-Za-z0-9]+/
+							})}
 						/>
 						<input
 							placeholder="Definition..."
 							name={`words_of_today[${index}].definition`}
-							ref={register()}
+							ref={register({
+								required: true,
+								pattern: /[A-Za-z0-9]+/
+							})}
 						/>
 
 						<ItemButtons
@@ -198,6 +218,8 @@ const AddAndUpdateJournal = () => {
 						/>
 					</div>
 				))}
+
+				{errors.words_of_today && <span>{errorText}</span>}
 			</div>
 
 		</form>
