@@ -1,23 +1,21 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { userLogin } from '../reducers/loginReducer'
-import { Link } from 'react-router-dom'
 
-const Login = () => {
+const UserRegistration = () => {
 	const dispatch = useDispatch()
 
 	const { register, handleSubmit, errors } = useForm()
 
-	const handleLogin = (data) => {
-		dispatch(userLogin(data.username, data.password))
+	const handleRegistration = data => {
+		console.log(data)
 	}
 
 	return (
 		<div>
-			<h2>Login</h2>
+			<h2>Registration</h2>
 
-			<form onSubmit={handleSubmit(handleLogin)}>
+			<form onSubmit={handleSubmit(handleRegistration)}>
 				<div>
 					username
 					<input
@@ -30,6 +28,18 @@ const Login = () => {
 					/>
 				</div>
 				{errors.username && <span>This field is required and needs at least 4 characters.</span>}
+
+				<div>
+					name
+					<input
+						type="text"
+						name="name"
+						ref={register({
+							required: true
+						})}
+					/>
+				</div>
+				{errors.username && <span>This field is required.</span>}
 
 				<div>
           password
@@ -45,12 +55,11 @@ const Login = () => {
 				{errors.password && <span>This field is required and needs at least 4 characters.</span>}
 
 				<div>
-					<button type="submit">login</button>
-					<button ><Link to='/register'>register</Link></button>
+					<button type="submit">register</button>
 				</div>
 			</form>
 		</div>
 	)
 }
 
-export default Login
+export default UserRegistration

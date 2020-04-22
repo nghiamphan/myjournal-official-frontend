@@ -10,6 +10,7 @@ import Login from './components/Login'
 import journalService from './services/journalService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { userLogout } from './reducers/loginReducer'
+import UserRegistration from './components/UserRegistration'
 
 const App = () => {
 
@@ -42,6 +43,9 @@ const App = () => {
 				<Switch>
 					<Route path="/login">
 						{!user ? <Login/> : <Redirect to="/calendar"/>}
+					</Route>
+					<Route path='/register'>
+						<UserRegistration/>
 					</Route>
 					<Route path="/calendar">
 						{user ? <XEffectCalendar/> : <Redirect to="/login"/>}
