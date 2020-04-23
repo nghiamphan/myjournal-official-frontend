@@ -53,6 +53,9 @@ const App = () => {
 					<Route path="/journals">
 						{user ? <MasterDetail/> : <Redirect to="/login"/>}
 					</Route>
+					<Route path="/">
+						{user ? <Redirect to="/calendar"/> : <Redirect to="/login"/>}
+					</Route>
 				</Switch>
 			</Router>
 		</div>
