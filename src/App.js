@@ -14,16 +14,16 @@ import UserRegistration from './components/UserRegistration'
 
 const App = () => {
 
-
-	const dispatch = useDispatch()
-	useEffect(() => {
-		dispatch(initializeJournals())
-	}, [dispatch])
 	// user object received from backend contains token, username and password
 	const user = useSelector(state => state.loginRedux)
 	if (user) {
 		journalService.setToken(user.token)
 	}
+
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(initializeJournals())
+	}, [dispatch, user])
 
 	const padding = {
 		padding: 5
