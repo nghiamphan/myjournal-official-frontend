@@ -61,6 +61,8 @@ const journalsReducer = (state = initialState, action) => {
 			displayedJournalId: null,
 			journalToUpdateId: action.id
 		}
+	case 'USER_LOGOUT':
+		return initialState
 	default:
 		return state
 	}
