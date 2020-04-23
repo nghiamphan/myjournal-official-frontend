@@ -52,10 +52,10 @@ const AddAndUpdateJournal = () => {
 
 		const journalObject = {
 			date: data.date,
-			todos: data.todos ? data.todos.map((todo, index) => ({ ...todo, id: index })) : [],
+			todos: data.todos ? data.todos : [],
 			reflection: data.reflection,
-			book_summaries: data.book_summaries ? data.book_summaries.map((summary, index) => ({ ...summary, id: index })) : [],
-			words_of_today: data.words_of_today ? data.words_of_today.map((word, index) => ({ ...word, id: index })) : []
+			book_summaries: data.book_summaries ? data.book_summaries : [],
+			words_of_today: data.words_of_today ? data.words_of_today : []
 		}
 
 		journalToUpdate
