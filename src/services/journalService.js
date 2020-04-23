@@ -9,8 +9,15 @@ const setToken = newToken => {
 }
 
 const getAll = async () => {
-	const response = await axios.get(baseUrl)
-	return response.data
+	const config = {
+		headers: { Authorization: token }
+	}
+	if (token) {
+		const response = await axios.get(baseUrl, config)
+		return response.data
+	} else {
+		return []
+	}
 }
 
 const createJournal = async (journalObject) => {
