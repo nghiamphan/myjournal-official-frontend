@@ -28,6 +28,11 @@ const AddAndUpdateJournal = () => {
 		name: 'book_summaries'
 	})
 
+	const quotesInputArray = useFieldArray({
+		control,
+		name: 'quotes'
+	})
+
 	const todayWordsInputArray = useFieldArray({
 		control,
 		name: 'words_of_today'
@@ -55,6 +60,7 @@ const AddAndUpdateJournal = () => {
 			todos: data.todos ? data.todos : [],
 			reflection: data.reflection,
 			book_summaries: data.book_summaries ? data.book_summaries : [],
+			quotes: data.quotes ? data.quotes : [],
 			words_of_today: data.words_of_today ? data.words_of_today : []
 		}
 
@@ -179,6 +185,49 @@ const AddAndUpdateJournal = () => {
 				))}
 
 				{errors.book_summaries && <span>{errorText}</span>}
+			</div>
+
+			<div>
+				<h3>Cool Quotes</h3>
+				{quotesInputArray.fields.length === 0 &&
+				<FirstAddButton
+					inputArray={quotesInputArray}
+					buttonText="add a quotation"
+				/>
+				}
+
+				{quotesInputArray.fields.map((quote, index) => (
+					<div
+						key={quote.id}
+						style={padding}
+					>
+						<textarea
+							placeholder="What interesting and insightful quotation you have come across today?"
+							name={`quotes[${index}].content`}
+							ref={register({
+								required: true,
+								pattern: /[A-Za-z0-9]+/
+							})}
+						/> <br/>
+						Source:
+						<input
+							name={`quotes[${index}].source`}
+							ref={register()}
+						/> <br/>
+						Comment:
+						<textarea
+							name={`quotes[${index}].comment`}
+							ref={register()}
+						/> <br/>
+
+						<ItemButtons
+							inputArray={quotesInputArray}
+							index={index}
+						/>
+					</div>
+				))}
+
+				{errors.quotes && <span>{errorText}</span>}
 			</div>
 
 			<div>
