@@ -1,6 +1,7 @@
 import React from 'react'
 import Todo from './journals/Todo'
 import BookSummary from './journals/BookSummary'
+import Quote from './journals/Quote'
 import TodayWord from './journals/TodayWord'
 
 const Journal = ({ journal }) => {
@@ -30,6 +31,19 @@ const Journal = ({ journal }) => {
 		</div>
 	)
 
+	const quotesDisplay = () => (
+		<div>
+			<h3>Cool Quotes</h3>
+			<div>
+				{journal.quotes.map(quote =>
+					<Quote
+						key={quote.id}
+						quote={quote} />
+				)}
+			</div>
+		</div>
+	)
+
 	const todayWordsDisplay = () => (
 		<div>
 			<h3>Words of Today</h3>
@@ -56,6 +70,8 @@ const Journal = ({ journal }) => {
 			</div>
 
 			{journal.book_summaries.length !== 0 && bookSummariesDisplay()}
+
+			{journal.quotes.length !== 0 && quotesDisplay()}
 
 			{journal.words_of_today.length !== 0 && todayWordsDisplay()}
 
