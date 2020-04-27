@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../reducers/loginReducer'
 import { Link } from 'react-router-dom'
+import loginJournalImage from '../images/login-journal.jpg'
 
 const Login = () => {
 	const dispatch = useDispatch()
@@ -14,43 +15,63 @@ const Login = () => {
 	}
 
 	return (
-		<div>
-			<h2>Login</h2>
+		<div className="row pt-3 pb-3">
+			<div className="login-form col-md-3">
+				<h3>Login</h3>
 
-			<form onSubmit={handleSubmit(handleLogin)}>
-				<div>
-					username
-					<input
-						type="text"
-						name="username"
-						ref={register({
-							required: true,
-							minLength: 4
-						})}
-					/>
-				</div>
-				{errors.username && <span>This field is required and needs at least 4 characters.</span>}
+				<form onSubmit={handleSubmit(handleLogin)}>
+					<div className="form-group">
+						<label className="h6">Username</label>
+						<input
+							className="form-control"
+							type="text"
+							name="username"
+							ref={register({
+								required: true,
+								minLength: 4
+							})}
+						/>
+					</div>
+					{errors.username &&
+					<span className="error-text" >This field is required.</span>
+					}
 
-				<div>
-          password
-					<input
-						type="password"
-						name="password"
-						ref={register({
-							required: true,
-							minLength: 4
-						})}
-					/>
-				</div>
-				{errors.password && <span>This field is required and needs at least 4 characters.</span>}
+					<div className="form-group">
+						<label className="h6">Password</label>
+						<input
+							className="form-control"
+							type="password"
+							name="password"
+							ref={register({
+								required: true,
+								minLength: 4
+							})}
+						/>
+					</div>
+					{errors.password &&
+					<span className="error-text">This field is required.</span>
+					}
 
-				<div>
-					<button type="submit">login</button>
-					<button >
-						<Link to='/register'>register</Link>
-					</button>
-				</div>
-			</form>
+					<div >
+						<button
+							className="btn btn-primary mr-3 my-medium-button"
+							type="submit"
+						>
+						Login
+						</button>
+						<button className="btn btn-primary my-medium-button">
+							<Link className="register-link" style={{ textDecoration: 'none' }} to='/register'>Register</Link>
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<div className="col-md-9">
+				<img
+					className="img-fluid"
+					src={loginJournalImage}
+					alt="A journal a day  makes bad habits go away"/>
+			</div>
 		</div>
 	)
 }

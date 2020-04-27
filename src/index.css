@@ -121,3 +121,25 @@
 .cross-off-day {
   background-color: aqua;
 }
+
+#root {
+  background-color: aquamarine;
+}
+
+.my-medium-button {
+  width: 80px;
+  margin-top: 10px;
+}
+
+a.register-link {
+  color: white;
+  text-decoration: none;
+}
+
+.error-text {
+  color: red;
+}
+
+.form-group {
+  margin-bottom: 3px;
+}
