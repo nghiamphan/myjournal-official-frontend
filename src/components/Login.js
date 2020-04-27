@@ -15,7 +15,7 @@ const Login = () => {
 	}
 
 	return (
-		<div className="row pt-3 pb-3">
+		<div className="my-page-container row">
 			<div className="col-md-3">
 				<h3>Login</h3>
 
