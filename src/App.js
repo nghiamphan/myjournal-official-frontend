@@ -25,24 +25,29 @@ const App = () => {
 		dispatch(initializeJournals())
 	}, [dispatch, user])
 
-	const padding = {
-		padding: 5
-	}
-
 	return (
-		<div className="container">
-
+		<div>
 			<Router>
-				{user &&
-					<div>
-						<Link style={padding} to="/calendar">X Effect Calendar</Link>
-						<Link style={padding} to="/journals">Journals</Link>
-						<button onClick={() => dispatch(userLogout())}>logout</button>
-					</div>
-				}
+				<nav className="nav bg-dark">
+					{user &&
+					<>
+						<Link className="navbar-brand" to="/journals">My Journal</Link>
+						<Link className="nav-link" to="/calendar">X Effect Calendar</Link>
+						<Link	className="nav-link" to="/journals">Journals</Link>
+						<Link
+							className="nav-link ml-auto"
+							onClick={() => dispatch(userLogout())}
+							to="/login"
+						>
+							Logout
+						</Link>
+					</>
+					}
+				</nav>
+
 				<Switch>
 					<Route path="/login">
-						{!user ? <Login/> : <Redirect to="/calendar"/>}
+						{!user ? <Login/> : <Redirect to="/journals"/>}
 					</Route>
 					<Route path='/register'>
 						<UserRegistration/>

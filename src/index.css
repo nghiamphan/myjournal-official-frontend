@@ -1,3 +1,7 @@
+/*
+* === X-effect Calendar ===
+*/
+
 .react-calendar {
   width: 50%;
   max-width: 100%;
@@ -122,13 +126,28 @@
   background-color: aqua;
 }
 
+/*
+* ======
+*/
+
 #root {
   background-color: aquamarine;
+}
+
+.nav {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-brand {
+  color: white;
 }
 
 .my-page-container {
   padding-top: 15px;
   padding-bottom: 15px;
+  margin-left:100px;
+  margin-right: 100px;
 }
 
 .my-medium-button {
