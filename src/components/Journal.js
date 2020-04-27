@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Todo from './journals/Todo'
 import BookSummary from './journals/BookSummary'
 import Quote from './journals/Quote'
 import TodayWord from './journals/TodayWord'
 
 const Journal = ({ journal }) => {
+	const sectionFilter = useSelector(state => state.sectionFilter)
+
 	const todosDisplay = () => (
 		<div>
 			<h3>Todos</h3>
@@ -58,23 +61,34 @@ const Journal = ({ journal }) => {
 	)
 	return (
 		<>
+			{!(sectionFilter !== 'all' && journal[sectionFilter].length === 0) &&
 			<div>
 				<h2>{journal.date}</h2>
 			</div>
+			}
 
-			{journal.todos.length !== 0 && todosDisplay()}
+			{journal.todos.length !== 0 &&
+			(sectionFilter === 'all' || sectionFilter === 'todos') &&
+			todosDisplay()}
 
+			{(sectionFilter === 'all' || sectionFilter === 'reflection') &&
 			<div>
 				<h3>How is your day?</h3>
 				{journal.reflection}
 			</div>
+			}
 
-			{journal.book_summaries.length !== 0 && bookSummariesDisplay()}
+			{journal.book_summaries.length !== 0 &&
+			(sectionFilter === 'all' || sectionFilter === 'book_summaries') &&
+			bookSummariesDisplay()}
 
-			{journal.quotes.length !== 0 && quotesDisplay()}
+			{journal.quotes.length !== 0 &&
+			(sectionFilter === 'all' || sectionFilter === 'quotes') &&
+			quotesDisplay()}
 
-			{journal.words_of_today.length !== 0 && todayWordsDisplay()}
-
+			{journal.words_of_today.length !== 0 &&
+			(sectionFilter === 'all' || sectionFilter === 'words_of_today') &&
+			todayWordsDisplay()}
 		</>
 	)
 }
