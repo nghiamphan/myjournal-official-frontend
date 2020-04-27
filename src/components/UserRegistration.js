@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import userRegistrationService from '../services/userRegistrationService'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
+import loginJournalImage from '../images/login-journal.jpg'
 
 const UserRegistration = () => {
 	const [error, setError] = useState(null)
@@ -21,53 +22,80 @@ const UserRegistration = () => {
 	}
 
 	return (
-		<div>
-			<h2>Registration</h2>
+		<div className="row pt-3 pb-3">
+			<div className="col-md-3">
+				<h3>Registration</h3>
 
-			<form onSubmit={handleSubmit(handleRegistration)}>
-				<div>
-					username
-					<input
-						type="text"
-						name="username"
-						ref={register({
-							required: true,
-							minLength: 4
-						})}
-					/>
-				</div>
-				{errors.username && <span>This field is required and needs at least 4 characters.</span>}
+				<form onSubmit={handleSubmit(handleRegistration)}>
+					<div className="form-group">
+						<label className="h6">Username</label>
+						<input
+							className="form-control"
+							type="text"
+							name="username"
+							ref={register({
+								required: true,
+								minLength: 4
+							})}
+						/>
+					</div>
+					{errors.username &&
+					<span className="error-text">Username must have at least 4 characters.</span>
+					}
 
-				<div>
-					name
-					<input
-						type="text"
-						name="name"
-						ref={register({
-							required: true
-						})}
-					/>
-				</div>
-				{errors.name && <span>This field is required.</span>}
+					<div className="form-group">
+						<label className="h6">Name</label>
+						<input
+							className="form-control"
+							type="text"
+							name="name"
+							ref={register({
+								required: true
+							})}
+						/>
+					</div>
+					{errors.name &&
+					<span className="error-text">This field is required.</span>
+					}
 
-				<div>
-          password
-					<input
-						type="password"
-						name="password"
-						ref={register({
-							required: true,
-							minLength: 4
-						})}
-					/>
-				</div>
-				{errors.password && <span>This field is required and needs at least 4 characters.</span>}
+					<div className="form-group">
+						<label className="h6">Password</label>
+						<input
+							className="form-control"
+							type="password"
+							name="password"
+							ref={register({
+								required: true,
+								minLength: 4
+							})}
+						/>
+					</div>
+					{errors.password &&
+					<span className="error-text">Password must have at least 4 characters.</span>
+					}
 
-				<div>
-					<button type="submit">register</button>
-				</div>
-			</form>
-			{<span>{error}</span>}
+					<div>
+						<button
+							className="btn btn-primary mr-3 my-medium-button"
+							type="submit">
+								Register
+						</button>
+					</div>
+				</form>
+				{<span className="error-text">{error}</span>}
+
+				<p className="mt-3">
+					Already have an account?&nbsp;
+					<Link to='/login'>Login</Link>
+				</p>
+			</div>
+
+			<div className="col-md-9">
+				<img
+					className="img-fluid"
+					src={loginJournalImage}
+					alt="A journal a day  makes bad habits go away"/>
+			</div>
 		</div>
 	)
 }

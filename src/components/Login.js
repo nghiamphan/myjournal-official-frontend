@@ -16,7 +16,7 @@ const Login = () => {
 
 	return (
 		<div className="row pt-3 pb-3">
-			<div className="login-form col-md-3">
+			<div className="col-md-3">
 				<h3>Login</h3>
 
 				<form onSubmit={handleSubmit(handleLogin)}>
@@ -33,7 +33,7 @@ const Login = () => {
 						/>
 					</div>
 					{errors.username &&
-					<span className="error-text" >This field is required.</span>
+					<span className="error-text">This field is required.</span>
 					}
 
 					<div className="form-group">
@@ -60,7 +60,12 @@ const Login = () => {
 						Login
 						</button>
 						<button className="btn btn-primary my-medium-button">
-							<Link className="register-link" style={{ textDecoration: 'none' }} to='/register'>Register</Link>
+							<Link
+								className="register-link"
+								to='/register'
+							>
+								Register
+							</Link>
 						</button>
 					</div>
 				</form>
