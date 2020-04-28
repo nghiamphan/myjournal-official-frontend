@@ -167,3 +167,21 @@ a.register-link {
 .form-group {
   margin-bottom: 3px;
 }
+
+.detail-header {
+  background-color: grey;
+}
+
+.detail-header-button {
+  width: 40px;
+  margin-right: 5px;
+}
+
+.detail-header-filter {
+  margin-top: 8px;
+}
+
+.detail-header-filter select {
+  color: white;
+  background-color: #292b2c;
+}

@@ -18,7 +18,7 @@ const MasterDetail = () => {
 			<div className="col-auto">
 				<DateList/>
 			</div>
-			<div className="col-auto">
+			<div className="col">
 				<DetailHeader/>
 				{sectionFilter === 'all'
 					? displayedJournal
