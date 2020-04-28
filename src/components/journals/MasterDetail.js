@@ -15,10 +15,10 @@ const MasterDetail = () => {
 
 	return (
 		<div className="row">
-			<div className="col-auto divider">
+			<div className="col-auto divider1">
 				<DateList/>
 			</div>
-			<div className="col">
+			<div className="col divider2">
 				{(displayedJournalId || journals.length === 0) && <DetailHeader/>}
 				{sectionFilter === 'all'
 					? displayedJournal
