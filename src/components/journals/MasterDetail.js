@@ -19,7 +19,7 @@ const MasterDetail = () => {
 				<DateList/>
 			</div>
 			<div className="col">
-				<DetailHeader/>
+				{displayedJournalId && <DetailHeader/>}
 				{sectionFilter === 'all'
 					? displayedJournal
 						? <Journal journal={displayedJournal}/>

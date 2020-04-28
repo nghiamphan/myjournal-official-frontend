@@ -194,6 +194,7 @@ a.register-link {
 .detail-header-filter select {
   color: white;
   background-color: #292b2c;
+  margin-right: 5px;
 }
 
 /*
