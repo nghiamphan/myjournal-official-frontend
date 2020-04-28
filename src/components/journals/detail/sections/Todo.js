@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateJournal } from '../../reducers/journalsReducer'
+import { updateJournal } from '../../../../reducers/journalsReducer'
 
 const Todo = ({ todo }) => {
 	const dispatch = useDispatch()

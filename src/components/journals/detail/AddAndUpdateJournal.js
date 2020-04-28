@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { createJournal, updateJournal, setDisplayedJournalId } from '../reducers/journalsReducer'
+import { createJournal, updateJournal, setDisplayedJournalId } from '../../../reducers/journalsReducer'
 import { FirstAddButton, ItemButtons } from './buttons/JournalFormButtons'
 
 const padding = {

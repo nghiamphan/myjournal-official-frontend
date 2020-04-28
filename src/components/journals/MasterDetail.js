@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DateList from './master/DateList'
 import Journal from './detail/Journal'
-import AddAndUpdateJournal from '../AddAndUpdateJournal'
+import AddAndUpdateJournal from '../journals/detail/AddAndUpdateJournal'
 import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../../reducers/journalsReducer'
 import { setSectionFilter } from '../../reducers/sectionFilterReducer'
 

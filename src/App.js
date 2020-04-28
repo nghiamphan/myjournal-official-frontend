@@ -10,7 +10,7 @@ import Login from './components/login/Login'
 import journalService from './services/journalService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { userLogout } from './reducers/loginReducer'
-import UserRegistration from './components/UserRegistration'
+import UserRegistration from './components/login/UserRegistration'
 
 const App = () => {
 

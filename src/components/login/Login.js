@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../../reducers/loginReducer'
 import { Link } from 'react-router-dom'
-import loginJournalImage from '../images/login-journal.jpg'
+import loginJournalImage from '../../images/login-journal.jpg'
 
 const Login = () => {
 	const dispatch = useDispatch()

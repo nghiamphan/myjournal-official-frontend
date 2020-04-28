@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import userRegistrationService from '../services/userRegistrationService'
+import userRegistrationService from '../../services/userRegistrationService'
 import { useHistory, Link } from 'react-router-dom'
-import loginJournalImage from '../images/login-journal.jpg'
+import loginJournalImage from '../../images/login-journal.jpg'
 
 const UserRegistration = () => {
 	const [error, setError] = useState(null)
