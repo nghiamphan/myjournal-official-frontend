@@ -14,7 +14,7 @@ const MasterDetail = () => {
 	const displayForm = useSelector(state => state.displayForm)
 
 	return (
-		<div className="my-page-container row">
+		<div className="row">
 			<div className="col-auto">
 				<DateList/>
 			</div>

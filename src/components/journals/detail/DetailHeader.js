@@ -23,7 +23,7 @@ const DetailHeader = () => {
 	}
 
 	return (
-		<div className="detail-header row">
+		<div className="detail-header row align-items-center">
 			<div className="col-auto">
 				{(displayedJournalId || !displayForm) &&
 				<button

@@ -169,16 +169,13 @@ a.register-link {
 }
 
 .detail-header {
+  height: 40px;
   background-color: grey;
 }
 
 .detail-header-button {
   width: 40px;
   margin-right: 5px;
-}
-
-.detail-header-filter {
-  margin-top: 8px;
 }
 
 .detail-header-filter select {
