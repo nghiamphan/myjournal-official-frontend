@@ -210,3 +210,9 @@ a.register-link {
 .date-list-item {
   margin-bottom: 10px;
 }
+
+.divider {
+  border-right: 2px solid #292b2c;
+  min-height: 100vh;
+  height: 100%;
+}
