@@ -51,26 +51,23 @@ const MasterDetail = () => {
 	}
 
 	return (
-		<>
-			<h1>My Journal</h1>
-			<div className="row">
-				<div className="col-3">
-					<DateList/>
-				</div>
-				<div className="col-9">
-					{detailHeader()}
-					{sectionFilter === 'all'
-						? displayedJournal
-							? <Journal journal={displayedJournal}/>
-							: displayForm
-								? <AddAndUpdateJournal/>
-								: <p>Write your first journal...</p>
-						: journals.map(journal => <Journal key={journal.id} journal={journal} />)
-					}
-				</div>
-
+		<div className="my-page-container row">
+			<div className="col-auto">
+				<DateList/>
 			</div>
-		</>
+			<div className="col-auto">
+				{detailHeader()}
+				{sectionFilter === 'all'
+					? displayedJournal
+						? <Journal journal={displayedJournal}/>
+						: displayForm
+							? <AddAndUpdateJournal/>
+							: <p>Write your first journal...</p>
+					: journals.map(journal => <Journal key={journal.id} journal={journal} />)
+				}
+			</div>
+
+		</div>
 	)
 }
 
