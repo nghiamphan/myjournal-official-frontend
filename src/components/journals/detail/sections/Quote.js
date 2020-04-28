@@ -1,16 +1,18 @@
 import React from 'react'
 
 const Quote = ({ quote }) => (
-	<div>
-		<i>{quote.content}</i>
+	<div className="quote-item card">
+		<blockquote className="quote-content">
+			<i>&ldquo;{quote.content}&rdquo;</i>
+		</blockquote>
 		{quote.source &&
-		<div>
-			Source: {quote.source}
+		<div className="quote-source">
+			- {quote.source}
 		</div>
 		}
 		{quote.comment &&
 		<div>
-			Comment: {quote.comment}
+			{quote.comment}
 		</div>
 		}
 	</div>

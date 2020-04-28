@@ -10,60 +10,54 @@ const Journal = ({ journal }) => {
 
 	const todosDisplay = () => (
 		<div>
-			<h3>Todos</h3>
-			<ul>
+			<h5 className="text-muted">Todos</h5>
+			<div className="card todos-list">
 				{journal.todos.map(todo =>
 					<Todo
 						key={todo.id}
 						todo={todo} />
 				)}
-			</ul>
+			</div>
 		</div>
 	)
 
 	const bookSummariesDisplay = () => (
 		<div>
-			<h3>Book Summary</h3>
-			<ul>
-				{journal.book_summaries.map(bookSummary =>
-					<BookSummary
-						key={bookSummary.id}
-						bookSummary={bookSummary} />
-				)}
-			</ul>
+			<h5 className="text-muted">Book Summary</h5>
+			{journal.book_summaries.map(bookSummary =>
+				<BookSummary
+					key={bookSummary.id}
+					bookSummary={bookSummary} />
+			)}
 		</div>
 	)
 
 	const quotesDisplay = () => (
 		<div>
-			<h3>Cool Quotes</h3>
-			<div>
-				{journal.quotes.map(quote =>
-					<Quote
-						key={quote.id}
-						quote={quote} />
-				)}
-			</div>
+			<h5 className="text-muted">Cool Quotes</h5>
+			{journal.quotes.map(quote =>
+				<Quote
+					key={quote.id}
+					quote={quote} />
+			)}
 		</div>
 	)
 
 	const todayWordsDisplay = () => (
 		<div>
-			<h3>Words of Today</h3>
-			<ul>
-				{journal.words_of_today.map(vocabulary =>
-					<TodayWord
-						key={vocabulary.id}
-						vocabulary={vocabulary} />
-				)}
-			</ul>
+			<h5 className="text-muted">Words of Today</h5>
+			{journal.words_of_today.map(vocabulary =>
+				<TodayWord
+					key={vocabulary.id}
+					vocabulary={vocabulary} />
+			)}
 		</div>
 	)
 	return (
-		<>
+		<div className="journal-page">
 			{!(sectionFilter !== 'all' && journal[sectionFilter].length === 0) &&
 			<div>
-				<h2>{journal.date}</h2>
+				<h5>{journal.date}</h5>
 			</div>
 			}
 
@@ -73,7 +67,7 @@ const Journal = ({ journal }) => {
 
 			{(sectionFilter === 'all' || sectionFilter === 'reflection') &&
 			<div>
-				<h3>How is your day?</h3>
+				<h5 className="text-muted">How is your day?</h5>
 				{journal.reflection}
 			</div>
 			}
@@ -89,7 +83,7 @@ const Journal = ({ journal }) => {
 			{journal.words_of_today.length !== 0 &&
 			(sectionFilter === 'all' || sectionFilter === 'words_of_today') &&
 			todayWordsDisplay()}
-		</>
+		</div>
 	)
 }
 

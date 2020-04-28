@@ -1,10 +1,19 @@
 import React from 'react'
 
 const BookSummary = ({ bookSummary }) => (
-	<li>
-		<strong>{bookSummary.title}</strong>: Chapter <i>{bookSummary.chapter}</i> <br/>
+	<div className="book-summary-item card">
+		<div className="row">
+			<div className="col-auto book-title h6">
+				{bookSummary.title}
+			</div>
+			{bookSummary.chapter &&
+			<div className="col-auto">
+				Chapter: <i>{bookSummary.chapter}</i>
+			</div>
+			}
+		</div>
 		{bookSummary.content}
-	</li>
+	</div>
 )
 
 export default BookSummary

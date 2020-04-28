@@ -216,3 +216,50 @@ a.register-link {
   min-height: 100vh;
   height: 100%;
 }
+
+/*
+* === Journal ===
+*/
+
+.todo-item, .book-summary-item, .quote-item, .word-item {
+  padding-left: 15px;
+}
+
+.book-summary-item, .quote-item, .word-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.todos-list {
+  background-color:thistle;
+  padding-top: 10px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.book-summary-item {
+  background-color: blanchedalmond;
+}
+
+.book-title {
+  margin-bottom: 15px;
+}
+
+.quote-item {
+  background-color: burlywood;
+}
+
+.quote-content {
+  margin-left: 15px;
+}
+
+.quote-source {
+  margin-left: 60px;
+  margin-bottom: 15px;
+}
+
+.word-item {
+  background-color: coral;
+}

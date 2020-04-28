@@ -17,7 +17,7 @@ const Todo = ({ todo }) => {
 	}
 
 	return (
-		<div>
+		<div className="todo-item">
 			<input
 				type="checkbox"
 				checked={todo.done}

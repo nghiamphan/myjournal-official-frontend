@@ -1,9 +1,10 @@
 import React from 'react'
 
 const TodayWord = ({ vocabulary }) => (
-	<li>
-		<strong>{vocabulary.word}</strong>: {vocabulary.definition}
-	</li>
+	<div className="word-item card">
+		<strong>{vocabulary.word}</strong>
+		{vocabulary.definition}
+	</div>
 )
 
 export default TodayWord
