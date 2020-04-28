@@ -135,6 +135,10 @@
   min-height: 100vh;
 }
 
+.row {
+	margin-right: 0px;
+}
+
 /*
 * === Navigation Bar ===
 */
@@ -269,4 +273,5 @@ a.register-link {
   border-left: 2px solid #292b2c;
   min-height: 100vh;
   height: 100%;
+	padding-right: 0px;
 }
