@@ -4,9 +4,9 @@ import {
 	BrowserRouter as Router,
 	Switch, Route, Link, Redirect
 } from 'react-router-dom'
-import XEffectCalendar from './components/XEffectCalendar'
-import MasterDetail from './components/MasterDetail'
-import Login from './components/Login'
+import XEffectCalendar from './components/calendar/XEffectCalendar'
+import MasterDetail from './components/journals/MasterDetail'
+import Login from './components/login/Login'
 import journalService from './services/journalService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { userLogout } from './reducers/loginReducer'

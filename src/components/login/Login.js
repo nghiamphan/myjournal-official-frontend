@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { userLogin } from '../reducers/loginReducer'
+import { userLogin } from '../../reducers/loginReducer'
 import { Link } from 'react-router-dom'
 import loginJournalImage from '../images/login-journal.jpg'
 

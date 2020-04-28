@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DateList from './DateList'
-import Journal from './Journal'
-import AddAndUpdateJournal from './AddAndUpdateJournal'
-import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../reducers/journalsReducer'
-import { setSectionFilter } from '../reducers/sectionFilterReducer'
+import DateList from './master/DateList'
+import Journal from './detail/Journal'
+import AddAndUpdateJournal from '../AddAndUpdateJournal'
+import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../../reducers/journalsReducer'
+import { setSectionFilter } from '../../reducers/sectionFilterReducer'
 
 const MasterDetail = () => {
 	const [displayForm, setDisplayForm] = useState(false)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setDisplayedJournalId } from '../reducers/journalsReducer'
+import { setDisplayedJournalId } from '../../../reducers/journalsReducer'
 
 const DateList = () => {
 	const dispatch = useDispatch()

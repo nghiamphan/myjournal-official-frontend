@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Todo from './journals/Todo'
-import BookSummary from './journals/BookSummary'
-import Quote from './journals/Quote'
-import TodayWord from './journals/TodayWord'
+import Todo from '../Todo'
+import BookSummary from '../BookSummary'
+import Quote from '../Quote'
+import TodayWord from '../TodayWord'
 
 const Journal = ({ journal }) => {
 	const sectionFilter = useSelector(state => state.sectionFilter)
