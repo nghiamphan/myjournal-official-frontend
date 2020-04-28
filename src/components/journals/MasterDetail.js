@@ -1,28 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DateList from './master/DateList'
 import Journal from './detail/Journal'
 import AddAndUpdateJournal from '../journals/detail/AddAndUpdateJournal'
 import { deleteJournal, setDisplayedJournalId, setJournalToUpdateId } from '../../reducers/journalsReducer'
 import { setSectionFilter } from '../../reducers/sectionFilterReducer'
+import { toggleFormOn } from '../../reducers/displayFormReducer'
 
 const MasterDetail = () => {
-	const [displayForm, setDisplayForm] = useState(false)
-
 	const dispatch = useDispatch()
 	const journals = useSelector(state => state.journalsRedux.journals)
 	const sectionFilter = useSelector(state => state.sectionFilter)
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
 	const displayedJournal = displayedJournalId ? journals.find(journal => journal.id === displayedJournalId) : null
 
+	const displayForm = useSelector(state => state.displayForm)
+
 	const addJournal = () => {
 		dispatch(setDisplayedJournalId(null))
-		setDisplayForm(true)
+		dispatch(toggleFormOn())
 	}
 
 	const updateJournal = () => {
 		dispatch(setJournalToUpdateId(displayedJournalId))
-		setDisplayForm(true)
+		dispatch(toggleFormOn())
 	}
 
 	const detailHeader = () => {
