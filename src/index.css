@@ -132,7 +132,12 @@
 
 #root {
   background-color: aquamarine;
+  min-height: 100vh;
 }
+
+/*
+* === Navigation Bar ===
+*/
 
 .nav {
   padding-left: 15px;
@@ -142,6 +147,10 @@
 .navbar-brand {
   color: white;
 }
+
+/*
+* === Login/Registration ===
+*/
 
 .my-page-container {
   padding-top: 15px;
@@ -168,6 +177,10 @@ a.register-link {
   margin-bottom: 3px;
 }
 
+/*
+* === Detail Header ===
+*/
+
 .detail-header {
   height: 40px;
   background-color: grey;
@@ -181,4 +194,18 @@ a.register-link {
 .detail-header-filter select {
   color: white;
   background-color: #292b2c;
+}
+
+/*
+* === Date List ===
+*/
+
+.date-list-page {
+  margin-left: 100px;
+  padding-right: 10px;
+  margin-top: 40px;
+}
+
+.date-list-item {
+  margin-bottom: 10px;
 }
