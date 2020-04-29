@@ -36,7 +36,7 @@ const XEffectCalendar = () => {
 	}
 
 	return (
-		<div className="my-page-container">
+		<div className="calendar-page">
 			<Calendar
 				tileClassName={crossOffDays}/>
 		</div>
