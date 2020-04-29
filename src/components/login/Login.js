@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../../reducers/loginReducer'
@@ -6,12 +6,17 @@ import { Link } from 'react-router-dom'
 import loginJournalImage from '../../images/login-journal.jpg'
 
 const Login = () => {
+	const [loginError, setLoginError] = useState(null)
 	const dispatch = useDispatch()
 
 	const { register, handleSubmit, errors } = useForm()
 
-	const handleLogin = (data) => {
+	const handleLogin = data => {
 		dispatch(userLogin(data.username, data.password))
+		const loggedInUser = JSON.parse(window.localStorage.getItem('loggedInMyJournalAppUser'))
+		if (!loggedInUser) {
+			setLoginError('Wrong credentials.')
+		}
 	}
 
 	return (
@@ -69,6 +74,7 @@ const Login = () => {
 						</button>
 					</div>
 				</form>
+				<span className="error-text">{loginError}</span>
 			</div>
 
 			<div className="col-md-9">

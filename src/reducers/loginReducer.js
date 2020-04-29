@@ -30,7 +30,7 @@ export const userLogin = (username, password) => {
 			})
 		} catch (exception) {
 			console.log(exception.message)
-			alert('wrong credentials')
+			//alert('wrong credentials')
 		}
 	}
 }
