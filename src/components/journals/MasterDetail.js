@@ -14,11 +14,9 @@ const MasterDetail = () => {
 	const displayForm = useSelector(state => state.displayForm)
 
 	return (
-		<div className="row">
-			<div className="col-auto divider1">
-				<DateList/>
-			</div>
-			<div className="col divider2">
+		<div className="flex-container">
+			<DateList/>
+			<div className="detail-section">
 				{(displayedJournalId || journals.length === 0) && <DetailHeader/>}
 				{sectionFilter === 'all'
 					? displayedJournal

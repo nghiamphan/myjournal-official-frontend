@@ -139,10 +139,6 @@
 	display: flex;
 }
 
-.row {
-	margin-right: 0px;
-}
-
 /*
 * === Navigation Bar ===
 */
@@ -189,9 +185,22 @@ a.register-link {
 * === Detail Header ===
 */
 
+.detail-section {
+	margin-left: -2px;
+	border-left: 2px solid #292b2c;
+	min-height: 100vh;
+	height: 100%;
+	flex-grow: 1;
+}
+
 .detail-header {
 	height: 40px;
 	background-color: grey;
+}
+
+.detail-header-button-group {
+	margin-left: 15px;
+	align-self: center;
 }
 
 .detail-header-button {
@@ -199,10 +208,18 @@ a.register-link {
 	margin-right: 5px;
 }
 
+.detail-header-filter {
+	margin-left: auto!important;
+	margin-right: 15px;
+	margin-top: 5px;
+	align-self: center;
+}
+
 .detail-header-filter select {
 	color: white;
 	background-color: #292b2c;
 	margin-right: 5px;
+	border-radius: 0.25rem;
 }
 
 /*
@@ -212,22 +229,24 @@ a.register-link {
 .date-list-page {
 	margin-left: 100px;
 	padding-right: 10px;
-	margin-top: 40px;
+	padding-top: 40px;
+
+	border-right: 2px solid #292b2c;
+	min-height: 100vh;
+	height: 100%;
 }
 
 .date-list-item {
 	margin-bottom: 10px;
 }
 
-.divider1 {
-	border-right: 2px solid #292b2c;
-	min-height: 100vh;
-	height: 100%;
-}
-
 /*
 * === Journal ===
 */
+
+.journal-page {
+	padding-left: 15px;
+}
 
 .todo-item, .book-summary-item, .quote-item, .word-item {
 	padding-left: 15px;
@@ -282,30 +301,13 @@ a.register-link {
 	background-color: coral;
 }
 
-.divider2 {
-	margin-left: -2px;
-	border-left: 2px solid #292b2c;
-	min-height: 100vh;
-	height: 100%;
-	padding-right: 0px;
-}
-
 /*
 * === Add and Edit Journal ===
 */
 
-.journal-form-header {
-	margin-left: -15px;
-}
-
 .journal-save-button, .journal-cancel-button {
 	width: 70px;
-	margin-right: 3px;
-	margin-bottom: 45px;
-}
-
-.journal-save-button {
-	margin-left: 15px;
+	margin-right: 5px;
 }
 
 .journal-form-control {
@@ -324,6 +326,7 @@ a.register-link {
 
 .date-section, .todos-section, .reflections-section, .book-summaries-section, .quotes-section, .words-section {
 	margin-top: 15px;
+	padding-left: 15px;
 }
 
 .add-todo-item, .add-book-summary-item, .add-quote-item, .add-word-item {

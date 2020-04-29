@@ -75,20 +75,22 @@ const AddAndUpdateJournal = () => {
 	return (
 		<form onSubmit={handleSubmit(addAndUpdateJournal)}>
 
-			<div className="detail-header journal-form-header row align-items-center">
-				<button
-					className="btn btn-dark journal-save-button"
-					type="submit"
-				>
+			<div className="detail-header flex-container">
+				<div className="detail-header-button-group">
+					<button
+						className="btn btn-dark journal-save-button"
+						type="submit"
+					>
 					Save
-				</button>
-				<button
-					className="btn btn-dark journal-cancel-button"
-					type="reset"
-					onClick={onCancel}
-				>
+					</button>
+					<button
+						className="btn btn-dark journal-cancel-button"
+						type="reset"
+						onClick={onCancel}
+					>
 					Cancel
-				</button>
+					</button>
+				</div>
 			</div>
 			<span className="error-text">{error}</span>
 

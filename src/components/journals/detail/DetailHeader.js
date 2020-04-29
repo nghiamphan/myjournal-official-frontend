@@ -23,8 +23,8 @@ const DetailHeader = () => {
 	}
 
 	return (
-		<div className="detail-header row align-items-center">
-			<div className="col-auto">
+		<div className="detail-header flex-container">
+			<div className="detail-header-button-group">
 				{(displayedJournalId || !displayForm) &&
 				<button
 					className="btn btn-dark detail-header-button"
@@ -56,7 +56,7 @@ const DetailHeader = () => {
 				}
 			</div>
 
-			<div className="col-auto ml-auto detail-header-filter">
+			<div className="detail-header-filter">
 				<label className="h6">Filter&nbsp;</label>
 				<select
 					onChange={event => dispatch(setSectionFilter(event.target.value))}>
