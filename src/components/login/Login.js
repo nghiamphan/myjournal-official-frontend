@@ -75,6 +75,13 @@ const Login = () => {
 					</div>
 				</form>
 				<span className="error-text">{loginError}</span>
+
+				<div className="alert alert-dark alert-dismissible fade show" role="alert">
+					Welcome to My Journal. Use `root` as both username and password for a quick demo. Or go to the about-page to learn more.
+					<button type="button" className="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 			</div>
 
 			<div className="col-md-9">

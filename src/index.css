@@ -183,6 +183,11 @@ a.register-link {
 	margin-bottom: 3px;
 }
 
+.alert {
+	margin-top: 15px;
+	font-size: 95%;
+}
+
 /*
 * === Detail Header ===
 */
