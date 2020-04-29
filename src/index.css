@@ -135,6 +135,10 @@
 	min-height: 100vh;
 }
 
+.flex-container {
+	display: flex;
+}
+
 .row {
 	margin-right: 0px;
 }
@@ -253,6 +257,7 @@ a.register-link {
 
 .quote-item {
 	background-color: burlywood;
+	border-radius: .25rem;
 }
 
 .quote-content {
@@ -274,4 +279,100 @@ a.register-link {
 	min-height: 100vh;
 	height: 100%;
 	padding-right: 0px;
+}
+
+/*
+* === Add and Edit Journal ===
+*/
+
+.journal-form-header {
+	margin-left: -15px;
+}
+
+.journal-save-button, .journal-cancel-button {
+	width: 70px;
+	margin-right: 3px;
+	margin-bottom: 45px;
+}
+
+.journal-save-button {
+	margin-left: 15px;
+}
+
+.journal-form-control {
+	height: calc(1.5em + .75rem + 2px);
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.date-section, .todos-section, .reflections-section, .book-summaries-section, .quotes-section, .words-section {
+	margin-top: 15px;
+}
+
+.add-todo-item, .add-book-summary-item, .add-quote-item, .add-word-item {
+	flex-basis:85%;
+}
+
+.date-label {
+	width: 70px;
+}
+
+.checkbox-input {
+	width: 5%;
+	align-self: center;
+}
+
+.task-input {
+	width: 90%;
+}
+
+.reflection-input {
+	width: 80%;
+	height: 100px;
+}
+
+.book-title-input {
+	width: 45%;
+	margin-right: 5%;
+}
+
+.book-chapter-input {
+	width: 45%;
+}
+
+.book-summary-input {
+	width: 95%;
+	height: 100px;
+	margin-top: 15px;
+}
+
+.quote-content-input, .quote-comment-input {
+	width: 95%;
+	height: 50px;
+}
+
+.quote-source-input {
+	width: 95%;
+	margin-bottom: 5px;
+}
+
+.word-input {
+	width: 20%;
+}
+
+.definition-input {
+	margin-left: 2%;
+	width: 73%;
+}
+
+.first-add-button {
+	width: 150px;
 }

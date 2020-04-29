@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createJournal, updateJournal, setDisplayedJournalId } from '../../../reducers/journalsReducer'
 import { FirstAddButton, ItemButtons } from './buttons/JournalFormButtons'
 
-const padding = {
-	padding: 12
-}
 const AddAndUpdateJournal = () => {
 	const [error, setError] = useState(null)
 
@@ -40,7 +37,7 @@ const AddAndUpdateJournal = () => {
 
 	const dispatch = useDispatch()
 
-	const errorText = 'This field is required.'
+	const fieldMissingErrorText = () => <span className="error-text">This field is required.</span>
 
 	const addAndUpdateJournal = data => {
 		const duplicatedDate = updateJournal
@@ -78,46 +75,62 @@ const AddAndUpdateJournal = () => {
 	return (
 		<form onSubmit={handleSubmit(addAndUpdateJournal)}>
 
-			<div style={padding}>
-				<button type="submit">save</button>
-				<button type="reset" onClick={onCancel}>cancel</button>
+			<div className="detail-header journal-form-header row align-items-center">
+				<button
+					className="btn btn-dark journal-save-button"
+					type="submit"
+				>
+					Save
+				</button>
+				<button
+					className="btn btn-dark journal-cancel-button"
+					type="reset"
+					onClick={onCancel}
+				>
+					Cancel
+				</button>
 			</div>
-			<span>{error}</span>
+			<span className="error-text">{error}</span>
 
-			<div>
-				<h3>Date
-					<input
-						type="date"
-						name="date"
-						ref={register({ required: true })}
-					/>
-				</h3>
-				{errors.date && <span>{errorText}</span>}
+			<div className="date-section">
+				<label className="date-label h5">Date</label>
+				<input
+					className="journal-form-control date-input"
+					type="date"
+					name="date"
+					ref={register({ required: true })}
+				/>
 			</div>
+			{errors.date && fieldMissingErrorText()}
 
-			<div>
-				<h3>Todos</h3>
+			<div className="todos-section">
+				<h5>Todos</h5>
 				{todosInputArray.fields.length === 0 &&
 					<FirstAddButton
 						inputArray={todosInputArray}
-						buttonText="add a task"
+						buttonText="Add a task"
 					/>
 				}
 
 				{todosInputArray.fields.map((item, index) => (
-					<div key={item.id}>
-						<input
-							type="checkbox"
-							name={`todos[${index}].done`}
-							ref={register()}
-						/>
-						<input
-							name={`todos[${index}].task`}
-							ref={register({
-								required: true,
-								pattern: /[A-Za-z0-9]+/
-							})}
-						/>
+					<div className="flex-container" key={item.id}>
+						<div className="add-todo-item">
+							<input
+								className="checkbox-input"
+								type="checkbox"
+								name={`todos[${index}].done`}
+								ref={register()}
+							/>
+							<input
+								className="journal-form-control task-input"
+								placeholder="Write your todo here..."
+								name={`todos[${index}].task`}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
+							/>
+						</div>
 
 						<ItemButtons
 							inputArray={todosInputArray}
@@ -126,57 +139,62 @@ const AddAndUpdateJournal = () => {
 					</div>
 				))}
 
-				{errors.todos && <span>{errorText}</span>}
+				{errors.todos && fieldMissingErrorText()}
 			</div>
 
 
-			<div>
-				<h3>How is your day?</h3>
+			<div className="reflections-section">
+				<h5>How is your day?</h5>
 				<div>
 					<textarea
+						className="journal-form-control reflection-input"
 						name="reflection"
 						ref={register({ required: true })}
 					/>
 				</div>
-				{errors.reflection && <span>{errorText}</span>}
+				{errors.reflection && fieldMissingErrorText()}
 			</div>
 
-			<div>
-				<h3>Book Summaries</h3>
+			<div className="book-summaries-section">
+				<h5>Book Summaries</h5>
 				{bookSummariesInputArray.fields.length === 0 &&
 					<FirstAddButton
 						inputArray={bookSummariesInputArray}
-						buttonText="add a summary"
+						buttonText="Add a summary"
 					/>
 				}
 
 				{bookSummariesInputArray.fields.map((summary, index) => (
-					<div key={summary.id} style={padding}>
-						<div>
-							Title:
+					<div className="flex-container" key={summary.id}>
+						<div className="add-book-summary-item">
 							<input
+								className="journal-form-control book-title-input"
+								placeholder="Book title"
 								name={`book_summaries[${index}].title`}
 								ref={register({
 									required: true,
 									pattern: /[A-Za-z0-9]+/
 								})}
 							/>
-							Chapter:
+
 							<input
+								className="journal-form-control book-chapter-input"
+								placeholder="Chapter"
 								name={`book_summaries[${index}].chapter`}
 								ref={register()}
 							/>
-						</div>
-						<textarea
-							placeholder="chapter summary and your thoughts..."
-							name={`book_summaries[${index}].content`}
-							ref={register({
-								required: true,
-								pattern: /[A-Za-z0-9]+/
-							})}
-						/>
 
-						<br/>
+							<textarea
+								className="journal-form-control book-summary-input"
+								placeholder="Chapter summary and your thoughts..."
+								name={`book_summaries[${index}].content`}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
+							/>
+						</div>
+
 						<ItemButtons
 							inputArray={bookSummariesInputArray}
 							index={index}
@@ -184,41 +202,45 @@ const AddAndUpdateJournal = () => {
 					</div>
 				))}
 
-				{errors.book_summaries && <span>{errorText}</span>}
+				{errors.book_summaries && fieldMissingErrorText()}
 			</div>
 
-			<div>
-				<h3>Cool Quotes</h3>
+			<div className="quotes-section">
+				<h5>Cool Quotes</h5>
 				{quotesInputArray.fields.length === 0 &&
 				<FirstAddButton
 					inputArray={quotesInputArray}
-					buttonText="add a quotation"
+					buttonText="Add a quotation"
 				/>
 				}
 
 				{quotesInputArray.fields.map((quote, index) => (
-					<div
-						key={quote.id}
-						style={padding}
-					>
-						<textarea
-							placeholder="What interesting and insightful quotation you have come across today?"
-							name={`quotes[${index}].content`}
-							ref={register({
-								required: true,
-								pattern: /[A-Za-z0-9]+/
-							})}
-						/> <br/>
-						Source:
-						<input
-							name={`quotes[${index}].source`}
-							ref={register()}
-						/> <br/>
-						Comment:
-						<textarea
-							name={`quotes[${index}].comment`}
-							ref={register()}
-						/> <br/>
+					<div className="flex-container" key={quote.id}>
+						<div className="add-quote-item">
+							<textarea
+								className="journal-form-control quote-content-input"
+								placeholder="What interesting and insightful quotation you have come across today?"
+								name={`quotes[${index}].content`}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
+							/>
+
+							<input
+								className="journal-form-control quote-source-input"
+								placeholder="Source"
+								name={`quotes[${index}].source`}
+								ref={register()}
+							/>
+
+							<textarea
+								className="journal-form-control quote-comment-input"
+								placeholder="Any comments you may have..."
+								name={`quotes[${index}].comment`}
+								ref={register()}
+							/>
+						</div>
 
 						<ItemButtons
 							inputArray={quotesInputArray}
@@ -227,39 +249,40 @@ const AddAndUpdateJournal = () => {
 					</div>
 				))}
 
-				{errors.quotes && <span>{errorText}</span>}
+				{errors.quotes && fieldMissingErrorText()}
 			</div>
 
-			<div>
-				<h3>Words of the day</h3>
+			<div className="words-section">
+				<h5>Words of the day</h5>
 				{todayWordsInputArray.fields.length === 0 &&
 					<FirstAddButton
 						inputArray={todayWordsInputArray}
-						buttonText="add a word"
+						buttonText="Add a word"
 					/>
 				}
 
 				{todayWordsInputArray.fields.map((word, index) => (
-					<div
-						key={word.id}
-						style={padding}
-					>
-						<input
-							placeholder="Word"
-							name={`words_of_today[${index}].word`}
-							ref={register({
-								required: true,
-								pattern: /[A-Za-z0-9]+/
-							})}
-						/>
-						<input
-							placeholder="Definition..."
-							name={`words_of_today[${index}].definition`}
-							ref={register({
-								required: true,
-								pattern: /[A-Za-z0-9]+/
-							})}
-						/>
+					<div className="flex-container" key={word.id}>
+						<div className="add-word-item">
+							<input
+								className="journal-form-control word-input"
+								placeholder="Word"
+								name={`words_of_today[${index}].word`}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
+							/>
+							<input
+								className="journal-form-control definition-input"
+								placeholder="Definition..."
+								name={`words_of_today[${index}].definition`}
+								ref={register({
+									required: true,
+									pattern: /[A-Za-z0-9]+/
+								})}
+							/>
+						</div>
 
 						<ItemButtons
 							inputArray={todayWordsInputArray}
@@ -268,7 +291,7 @@ const AddAndUpdateJournal = () => {
 					</div>
 				))}
 
-				{errors.words_of_today && <span>{errorText}</span>}
+				{errors.words_of_today && fieldMissingErrorText()}
 			</div>
 
 		</form>
