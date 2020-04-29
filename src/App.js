@@ -11,6 +11,7 @@ import journalService from './services/journalService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { userLogout } from './reducers/loginReducer'
 import UserRegistration from './components/login/UserRegistration'
+import Footer from './components/footer/Footer'
 
 const App = () => {
 
@@ -63,6 +64,7 @@ const App = () => {
 					</Route>
 				</Switch>
 			</Router>
+			<Footer/>
 		</div>
 	)
 }
