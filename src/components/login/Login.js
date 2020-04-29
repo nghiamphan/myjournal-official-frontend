@@ -11,8 +11,8 @@ const Login = () => {
 
 	const { register, handleSubmit, errors } = useForm()
 
-	const handleLogin = data => {
-		dispatch(userLogin(data.username, data.password))
+	const handleLogin = async data => {
+		await dispatch(userLogin(data.username, data.password))
 		const loggedInUser = JSON.parse(window.localStorage.getItem('loggedInMyJournalAppUser'))
 		if (!loggedInUser) {
 			setLoginError('Wrong credentials.')
