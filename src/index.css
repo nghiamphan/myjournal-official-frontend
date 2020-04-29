@@ -238,6 +238,7 @@ a.register-link {
 	padding-bottom: 10px;
 	margin-right: 15px;
 	margin-bottom: 15px;
+	border-radius: .5rem;
 }
 
 .todos-list {
@@ -245,23 +246,31 @@ a.register-link {
 	padding-top: 10px;
 	margin-right: 15px;
 	margin-bottom: 15px;
+	border-radius: .5rem;
 }
 
-.book-summary-item {
-	background-color: blanchedalmond;
+.book-summary-item, .add-book-summary-item {
+	background-color: khaki;
+}
+
+.book-summary-header {
+	margin-bottom: 15px;
+
 }
 
 .book-title {
-	margin-bottom: 15px;
+	margin-right: 30px;
+	font-size: 110%;
 }
 
-.quote-item {
+.quote-item, .add-quote-item {
 	background-color: burlywood;
-	border-radius: .25rem;
 }
 
 .quote-content {
 	margin-left: 15px;
+	text-size-adjust: 1.25rem;
+	font-size: 110%;
 }
 
 .quote-source {
@@ -269,7 +278,7 @@ a.register-link {
 	margin-bottom: 15px;
 }
 
-.word-item {
+.word-item, .add-word-item {
 	background-color: coral;
 }
 
@@ -319,6 +328,15 @@ a.register-link {
 
 .add-todo-item, .add-book-summary-item, .add-quote-item, .add-word-item {
 	flex-basis:85%;
+	padding-left: 1%;
+	margin-right: 1%;
+	margin-bottom: 10px;
+	border-radius: .5rem;
+}
+
+.add-book-summary-item, .add-quote-item, .add-word-item {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .date-label {
@@ -326,12 +344,12 @@ a.register-link {
 }
 
 .checkbox-input {
-	width: 5%;
+	width: 3%;
 	align-self: center;
 }
 
 .task-input {
-	width: 90%;
+	width: 92%;
 }
 
 .reflection-input {
@@ -375,4 +393,9 @@ a.register-link {
 
 .first-add-button {
 	width: 150px;
+}
+
+.add-form-button-group {
+	align-self: center;
+	margin-bottom: 10px;
 }

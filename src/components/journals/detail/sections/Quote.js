@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Quote = ({ quote }) => (
-	<div className="quote-item card">
+	<div className="quote-item">
 		<blockquote className="quote-content">
 			<i>&ldquo;{quote.content}&rdquo;</i>
 		</blockquote>

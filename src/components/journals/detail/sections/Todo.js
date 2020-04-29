@@ -19,6 +19,7 @@ const Todo = ({ todo }) => {
 	return (
 		<div className="todo-item">
 			<input
+				className="checkbox-input"
 				type="checkbox"
 				checked={todo.done}
 				onChange={toggleCheck}/>

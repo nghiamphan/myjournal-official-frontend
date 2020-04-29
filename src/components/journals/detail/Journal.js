@@ -9,9 +9,9 @@ const Journal = ({ journal }) => {
 	const sectionFilter = useSelector(state => state.sectionFilter)
 
 	const todosDisplay = () => (
-		<div>
+		<div className="todos-section">
 			<h5 className="text-muted">Todos</h5>
-			<div className="card todos-list">
+			<div className="todos-list">
 				{journal.todos.map(todo =>
 					<Todo
 						key={todo.id}
@@ -22,7 +22,7 @@ const Journal = ({ journal }) => {
 	)
 
 	const bookSummariesDisplay = () => (
-		<div>
+		<div className="book-summaries-section">
 			<h5 className="text-muted">Book Summary</h5>
 			{journal.book_summaries.map(bookSummary =>
 				<BookSummary
@@ -33,7 +33,7 @@ const Journal = ({ journal }) => {
 	)
 
 	const quotesDisplay = () => (
-		<div>
+		<div className="quotes-section">
 			<h5 className="text-muted">Cool Quotes</h5>
 			{journal.quotes.map(quote =>
 				<Quote
@@ -44,7 +44,7 @@ const Journal = ({ journal }) => {
 	)
 
 	const todayWordsDisplay = () => (
-		<div>
+		<div className="words-section">
 			<h5 className="text-muted">Words of Today</h5>
 			{journal.words_of_today.map(vocabulary =>
 				<TodayWord
@@ -56,7 +56,7 @@ const Journal = ({ journal }) => {
 	return (
 		<div className="journal-page">
 			{!(sectionFilter !== 'all' && journal[sectionFilter].length === 0) &&
-			<div>
+			<div className="date-section">
 				<h5>{journal.date}</h5>
 			</div>
 			}
@@ -66,7 +66,7 @@ const Journal = ({ journal }) => {
 			todosDisplay()}
 
 			{(sectionFilter === 'all' || sectionFilter === 'reflection') &&
-			<div>
+			<div className="reflections-section">
 				<h5 className="text-muted">How is your day?</h5>
 				{journal.reflection}
 			</div>

@@ -64,7 +64,7 @@ export const MoveDownButton = ({ inputArray, index }) => (
 )
 
 export const ItemButtons = ({ inputArray, index }) => (
-	<div>
+	<div className="add-form-button-group">
 		<MoveUpButton
 			inputArray={inputArray}
 			index={index}

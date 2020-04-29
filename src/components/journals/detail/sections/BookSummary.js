@@ -1,15 +1,15 @@
 import React from 'react'
 
 const BookSummary = ({ bookSummary }) => (
-	<div className="book-summary-item card">
-		<div className="row">
-			<div className="col-auto book-title h6">
+	<div className="book-summary-item">
+		<div className="book-summary-header">
+			<span className="book-title h6">
 				{bookSummary.title}
-			</div>
+			</span>
 			{bookSummary.chapter &&
-			<div className="col-auto">
+			<>
 				Chapter: <i>{bookSummary.chapter}</i>
-			</div>
+			</>
 			}
 		</div>
 		{bookSummary.content}
