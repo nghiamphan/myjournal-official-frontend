@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { setDisplayedJournalId } from '../../../reducers/journalsReducer'
 
 const DateList = () => {
+	const [dateFilter, setDateFilter] = useState('')
+
 	const dispatch = useDispatch()
 	const journals = useSelector(state => state.journalsRedux.journals)
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
@@ -12,7 +14,15 @@ const DateList = () => {
 
 	return (
 		<div className="date-list-page">
+			<input
+				className="date-search-box"
+				type="text"
+				placeholder="Search Date"
+				value={dateFilter}
+				onChange={event => setDateFilter(event.target.value)}
+			/>
 			{journals && journals.length > 0 && journals.map(journal =>
+				(journal.date.includes(dateFilter) &&
 				<div
 					key={journal.id}
 					onClick={() => dispatch(setDisplayedJournalId(journal.id))}>
@@ -22,6 +32,7 @@ const DateList = () => {
 						<FontAwesomeIcon icon={faEllipsisV}/>}
 					</div>
 				</div>
+				)
 			)}
 		</div>
 	)

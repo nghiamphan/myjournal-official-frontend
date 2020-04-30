@@ -238,12 +238,19 @@ a.register-link {
 .date-list-page {
 	margin-left: 100px;
 	padding-right: 10px;
-	padding-top: 40px;
+	padding-top: 5px;
 	padding-bottom: 25px;
 
 	border-right: 2px solid #292b2c;
 	min-height: 100vh;
 	height: 100%;
+}
+
+.date-search-box {
+	margin-bottom: 5px;
+	color: white;
+	background-color: darkgrey; 
+	border-radius: 0.25rem;
 }
 
 .date-list-item {
