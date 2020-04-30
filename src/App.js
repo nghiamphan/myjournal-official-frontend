@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	BrowserRouter as Router,
@@ -15,6 +15,7 @@ import About from './components/about/About'
 import Footer from './components/footer/Footer'
 
 const App = () => {
+	const [route, setRoute] = useState(window.location.pathname)
 
 	// user object received from backend contains token, username and password
 	const user = useSelector(state => state.loginRedux)
@@ -27,6 +28,12 @@ const App = () => {
 		dispatch(initializeJournals())
 	}, [dispatch, user])
 
+	const setBackground = (location) => {
+		if (location === route) {
+			return { backgroundColor: 'cornsilk' }
+		}
+	}
+
 	return (
 		<div>
 			<Router>
@@ -34,9 +41,30 @@ const App = () => {
 					{user &&
 					<>
 						<Link className="navbar-brand" to="/journals">My Journal</Link>
-						<Link className="nav-link" to="/calendar">Calendar</Link>
-						<Link	className="nav-link" to="/journals">Journals</Link>
-						<Link className="nav-link" to="/about">About</Link>
+						<Link
+							className="nav-link"
+							style={setBackground('/calendar')}
+							onClick={() => setRoute('/calendar')}
+							to="/calendar"
+						>
+							Calendar
+						</Link>
+						<Link
+							className="nav-link"
+							style={setBackground('/journals')}
+							onClick={() => setRoute('/journals')}
+							to="/journals"
+						>
+							Journals
+						</Link>
+						<Link
+							className="nav-link"
+							style={setBackground('/about')}
+							onClick={() => setRoute('/about')}
+							to="/about"
+						>
+							About
+						</Link>
 						<Link
 							className="nav-link ml-auto"
 							onClick={() => dispatch(userLogout())}
