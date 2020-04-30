@@ -11,6 +11,7 @@ import journalService from './services/journalService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { userLogout } from './reducers/loginReducer'
 import UserRegistration from './components/login/UserRegistration'
+import About from './components/about/About'
 import Footer from './components/footer/Footer'
 
 const App = () => {
@@ -33,8 +34,9 @@ const App = () => {
 					{user &&
 					<>
 						<Link className="navbar-brand" to="/journals">My Journal</Link>
-						<Link className="nav-link" to="/calendar">X Effect Calendar</Link>
+						<Link className="nav-link" to="/calendar">Calendar</Link>
 						<Link	className="nav-link" to="/journals">Journals</Link>
+						<Link className="nav-link" to="/about">About</Link>
 						<Link
 							className="nav-link ml-auto"
 							onClick={() => dispatch(userLogout())}
@@ -61,6 +63,9 @@ const App = () => {
 					</Route>
 					<Route path="/journals">
 						{user ? <MasterDetail/> : <Redirect to="/login"/>}
+					</Route>
+					<Route path="/about">
+						<About/>
 					</Route>
 					<Route path="/">
 						{user ? <Redirect to="/calendar"/> : <Redirect to="/login"/>}
