@@ -38,41 +38,62 @@ const App = () => {
 		<div>
 			<Router>
 				<nav className="nav bg-dark">
+					<Link
+						className="navbar-brand"
+						onClick={() => setRoute('/journals')}
+						to="/journals"
+					>
+						My Journal
+					</Link>
+
 					{user &&
-					<>
-						<Link className="navbar-brand" to="/journals">My Journal</Link>
-						<Link
-							className="nav-link"
-							style={setBackground('/calendar')}
-							onClick={() => setRoute('/calendar')}
-							to="/calendar"
-						>
-							Calendar
-						</Link>
-						<Link
-							className="nav-link"
-							style={setBackground('/journals')}
-							onClick={() => setRoute('/journals')}
-							to="/journals"
-						>
-							Journals
-						</Link>
-						<Link
-							className="nav-link"
-							style={setBackground('/about')}
-							onClick={() => setRoute('/about')}
-							to="/about"
-						>
+					<Link
+						className="nav-link"
+						style={setBackground('/calendar')}
+						onClick={() => setRoute('/calendar')}
+						to="/calendar"
+					>
+						Calendar
+					</Link>
+					}
+
+					{user &&
+					<Link
+						className="nav-link"
+						style={setBackground('/journals')}
+						onClick={() => setRoute('/journals')}
+						to="/journals"
+					>
+						Journals
+					</Link>
+					}
+
+					<Link
+						className="nav-link"
+						style={setBackground('/about')}
+						onClick={() => setRoute('/about')}
+						to="/about"
+					>
 							About
-						</Link>
-						<Link
-							className="nav-link ml-auto"
-							onClick={() => dispatch(userLogout())}
-							to="/login"
-						>
-							Logout
-						</Link>
-					</>
+					</Link>
+
+					{!user &&
+					<Link
+						className="nav-link ml-auto"
+						to="/login"
+					>
+						Login
+					</Link>
+					}
+
+					{user &&
+					<Link
+						className="nav-link ml-auto"
+						onClick={() => dispatch(userLogout())}
+						to="/login"
+					>
+						Logout
+					</Link>
 					}
 				</nav>
 
