@@ -4,6 +4,7 @@ import DateList from './master/DateList'
 import Journal from './detail/Journal'
 import AddAndUpdateJournal from '../journals/detail/AddAndUpdateJournal'
 import DetailHeader from './detail/DetailHeader'
+import Footer from '../footer/Footer'
 
 const MasterDetail = () => {
 	const journals = useSelector(state => state.journalsRedux.journals)
@@ -26,6 +27,7 @@ const MasterDetail = () => {
 							: <p>Write your first journal...</p>
 					: journals.map(journal => <Journal key={journal.id} journal={journal} />)
 				}
+				<Footer/>
 			</div>
 
 		</div>

@@ -131,6 +131,7 @@
 */
 
 #root {
+	position: relative;
 	background-color: aquamarine;
 	min-height: 100vh;
 }
@@ -160,7 +161,7 @@
 
 .my-page-container {
 	padding-top: 25px;
-	padding-bottom: 100px;
+	padding-bottom: 125px;
 	margin-left: 100px;
 	margin-right: 100px;
 }
@@ -269,7 +270,7 @@ a.register-link {
 
 .journal-page {
 	padding-left: 15px;
-	padding-bottom: 25px;
+	padding-bottom: 125px;
 }
 
 .todo-item, .book-summary-item, .quote-item, .word-item {
@@ -331,7 +332,7 @@ a.register-link {
 
 .add-form-page {
 	padding-left: 15px;
-	padding-bottom: 25px;
+	padding-bottom: 125px;
 }
 
 .journal-save-button, .journal-cancel-button {
@@ -439,5 +440,5 @@ a.register-link {
 	margin-left: 100px;
 	margin-right: 100px;
 	padding-top: 15px;
-	padding-bottom: 25px;
+	padding-bottom: 125px;
 }

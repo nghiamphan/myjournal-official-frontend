@@ -6,6 +6,10 @@ const Footer = () => {
 		color: 'white',
 		height: 100,
 		paddingTop: 20,
+
+		position: 'absolute',
+		bottom: 0,
+		width: '100%'
 	}
 
 	const quoteStyle = {

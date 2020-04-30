@@ -49,12 +49,15 @@ const App = () => {
 				<Switch>
 					<Route path="/login">
 						{!user ? <Login/> : <Redirect to="/journals"/>}
+						<Footer/>
 					</Route>
 					<Route path='/register'>
 						<UserRegistration/>
+						<Footer/>
 					</Route>
 					<Route path="/calendar">
 						{user ? <XEffectCalendar/> : <Redirect to="/login"/>}
+						<Footer/>
 					</Route>
 					<Route path="/journals">
 						{user ? <MasterDetail/> : <Redirect to="/login"/>}
@@ -64,7 +67,6 @@ const App = () => {
 					</Route>
 				</Switch>
 			</Router>
-			{/* <Footer/> */}
 		</div>
 	)
 }
