@@ -193,10 +193,7 @@ a.register-link {
 */
 
 .detail-section {
-	margin-left: -2px;
-	border-left: 2px solid #292b2c;
-	min-height: 100vh;
-	height: 100%;
+	margin-left: 20%;
 	flex-grow: 1;
 }
 
@@ -236,21 +233,30 @@ a.register-link {
 */
 
 .date-list-page {
-	margin-left: 100px;
-	padding-right: 10px;
+	position: fixed;
+	top: 40px;
+
+	padding-left: 100px;
 	padding-top: 5px;
 	padding-bottom: 25px;
 
 	border-right: 2px solid #292b2c;
 	min-height: 100vh;
 	height: 100%;
+	width: 20%;
 }
 
 .date-search-box {
 	margin-bottom: 5px;
+	width: 90%;
 	color: white;
 	background-color: darkgrey; 
 	border-radius: 0.25rem;
+}
+
+.date-list {
+	height: calc(100% - 50px);
+	overflow: auto;
 }
 
 .date-list-item {

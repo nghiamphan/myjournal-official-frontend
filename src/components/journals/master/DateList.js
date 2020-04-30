@@ -21,19 +21,21 @@ const DateList = () => {
 				value={dateFilter}
 				onChange={event => setDateFilter(event.target.value)}
 			/>
-			{journals && journals.length > 0 && journals.map(journal =>
-				(journal.date.includes(dateFilter) &&
-				<div
-					key={journal.id}
-					onClick={() => dispatch(setDisplayedJournalId(journal.id))}>
-					<div className="h6 date-list-item">
-						{journal.date}&nbsp;
-						{(journal.id === displayedJournalId || journal.id === journalToUpdateId )&&
-						<FontAwesomeIcon icon={faEllipsisV}/>}
+			<div className="date-list">
+				{journals && journals.length > 0 && journals.map(journal =>
+					(journal.date.includes(dateFilter) &&
+					<div
+						key={journal.id}
+						onClick={() => dispatch(setDisplayedJournalId(journal.id))}>
+						<div className="h6 date-list-item">
+							{journal.date}&nbsp;
+							{(journal.id === displayedJournalId || journal.id === journalToUpdateId )&&
+							<FontAwesomeIcon icon={faEllipsisV}/>}
+						</div>
 					</div>
-				</div>
-				)
-			)}
+					)
+				)}
+			</div>
 		</div>
 	)
 }
