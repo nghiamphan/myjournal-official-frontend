@@ -340,6 +340,10 @@ a.register-link {
 	padding-bottom: 125px;
 }
 
+.add-form-header {
+	margin-left: -15px;
+}
+
 .journal-save-button, .journal-cancel-button {
 	width: 70px;
 	margin-right: 5px;

@@ -76,7 +76,7 @@ const AddAndUpdateJournal = () => {
 		<div className="add-form-page">
 			<form onSubmit={handleSubmit(addAndUpdateJournal)}>
 
-				<div className="detail-header flex-container">
+				<div className="add-form-header detail-header flex-container">
 					<div className="detail-header-button-group">
 						<button
 							className="btn btn-dark journal-save-button"
