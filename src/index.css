@@ -442,12 +442,23 @@ a.register-link {
 }
 
 /*
-* === Add and Edit Journal ===
+* === Calendar Page ===
 */
 
 .calendar-page {
 	margin-left: 100px;
 	margin-right: 100px;
 	padding-top: 15px;
+	padding-bottom: 125px;
+}
+
+/*
+* === About Page ===
+*/
+
+.about-page {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 25px;
 	padding-bottom: 125px;
 }

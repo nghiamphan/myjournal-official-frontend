@@ -115,6 +115,7 @@ const App = () => {
 					</Route>
 					<Route path="/about">
 						<About/>
+						<Footer/>
 					</Route>
 					<Route path="/">
 						{user ? <Redirect to="/calendar"/> : <Redirect to="/login"/>}
