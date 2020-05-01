@@ -6,7 +6,7 @@
 	width: 50%;
 	max-width: 100%;
 	color: black;
-	background: white;
+	background: blanchedalmond;
 	border: 1px solid #a0a096;
 	font-family: Arial, Helvetica, sans-serif;
 	line-height: 1.125em;
@@ -280,6 +280,7 @@ a.register-link {
 
 .todo-item, .book-summary-item, .quote-item, .word-item {
 	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .book-summary-item, .quote-item, .word-item {
@@ -446,10 +447,28 @@ a.register-link {
 */
 
 .calendar-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
 	margin-left: 100px;
 	margin-right: 100px;
-	padding-top: 15px;
+	padding-top: 25px;
 	padding-bottom: 125px;
+}
+
+.monthly {
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	margin-top: 15px;
+	border-radius: .5rem;
+	width: 100%;
+
+	background-color: thistle;
 }
 
 /*

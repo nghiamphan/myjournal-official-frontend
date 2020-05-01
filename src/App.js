@@ -4,14 +4,16 @@ import {
 	BrowserRouter as Router,
 	Switch, Route, Link, Redirect
 } from 'react-router-dom'
-import XEffectCalendar from './components/calendar/XEffectCalendar'
-import MasterDetail from './components/journals/MasterDetail'
-import Login from './components/login/Login'
+
 import journalService from './services/journalService'
 import monthlyService from './services/monthlyService'
 import { initializeJournals } from './reducers/journalsReducer'
 import { initializeMonthlies } from './reducers/monthliesReducer'
 import { userLogout } from './reducers/loginReducer'
+
+import CalendarPage from './components/calendar/CalendarPage'
+import MasterDetail from './components/journals/MasterDetail'
+import Login from './components/login/Login'
 import UserRegistration from './components/login/UserRegistration'
 import About from './components/about/About'
 import Footer from './components/footer/Footer'
@@ -111,7 +113,7 @@ const App = () => {
 						<Footer/>
 					</Route>
 					<Route path="/calendar">
-						{user ? <XEffectCalendar/> : <Redirect to="/login"/>}
+						{user ? <CalendarPage/> : <Redirect to="/login"/>}
 						<Footer/>
 					</Route>
 					<Route path="/journals">
