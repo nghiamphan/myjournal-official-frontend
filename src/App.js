@@ -8,7 +8,9 @@ import XEffectCalendar from './components/calendar/XEffectCalendar'
 import MasterDetail from './components/journals/MasterDetail'
 import Login from './components/login/Login'
 import journalService from './services/journalService'
+import monthlyService from './services/monthlyService'
 import { initializeJournals } from './reducers/journalsReducer'
+import { initializeMonthlies } from './reducers/monthliesReducer'
 import { userLogout } from './reducers/loginReducer'
 import UserRegistration from './components/login/UserRegistration'
 import About from './components/about/About'
@@ -21,11 +23,13 @@ const App = () => {
 	const user = useSelector(state => state.loginRedux)
 	if (user) {
 		journalService.setToken(user.token)
+		monthlyService.setToken(user.token)
 	}
 
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(initializeJournals())
+		dispatch(initializeMonthlies())
 	}, [dispatch, user])
 
 	const setBackground = (location) => {
