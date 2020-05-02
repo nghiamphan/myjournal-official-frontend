@@ -3,29 +3,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { setDisplayedJournalId, setJournalToUpdateId, deleteJournal } from '../../../reducers/journalsReducer'
-import { toggleFormOn } from '../../../reducers/displayFormReducer'
+import { toggleJournalFormOn } from '../../../reducers/displayJournalFormReducer'
 import { setSectionFilter } from '../../../reducers/sectionFilterReducer'
 
 const DetailHeader = () => {
 	const dispatch = useDispatch()
 	const sectionFilter = useSelector(state => state.sectionFilter)
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
-	const displayForm = useSelector(state => state.displayForm)
+	const displayJournalForm = useSelector(state => state.displayJournalForm)
 
 	const addJournal = () => {
 		dispatch(setDisplayedJournalId(null))
-		dispatch(toggleFormOn())
+		dispatch(toggleJournalFormOn())
 	}
 
 	const updateJournal = () => {
 		dispatch(setJournalToUpdateId(displayedJournalId))
-		dispatch(toggleFormOn())
+		dispatch(toggleJournalFormOn())
 	}
 
 	return (
 		<div className="detail-header flex-container">
 			<div className="detail-header-button-group">
-				{(displayedJournalId || !displayForm) &&
+				{(displayedJournalId || !displayJournalForm) &&
 				<button
 					className="btn btn-dark detail-header-button"
 					title="Write a new journal"

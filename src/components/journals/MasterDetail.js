@@ -12,7 +12,7 @@ const MasterDetail = () => {
 	const displayedJournalId = useSelector(state => state.journalsRedux.displayedJournalId)
 	const displayedJournal = displayedJournalId ? journals.find(journal => journal.id === displayedJournalId) : null
 
-	const displayForm = useSelector(state => state.displayForm)
+	const displayJournalForm = useSelector(state => state.displayJournalForm)
 
 	return (
 		<div className="flex-container">
@@ -22,7 +22,7 @@ const MasterDetail = () => {
 				{sectionFilter === 'all'
 					? displayedJournal
 						? <Journal journal={displayedJournal}/>
-						: displayForm
+						: displayJournalForm
 							? <AddAndUpdateJournal/>
 							: <p>Write your first journal...</p>
 					: journals.map(journal => <Journal key={journal.id} journal={journal} />)

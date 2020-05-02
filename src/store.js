@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import journalsReducer from './reducers/journalsReducer'
 import loginReducer from './reducers/loginReducer'
 import sectionFilterReducer from './reducers/sectionFilterReducer'
-import displayFormReducer from './reducers/displayFormReducer'
+import displayJournalFormReducer from './reducers/displayJournalFormReducer'
 import monthliesReducer from './reducers/monthliesReducer'
 import displayMonthlyFormReducer from './reducers/displayMonthlyFormReducer'
 
@@ -13,7 +13,7 @@ const reducer = combineReducers({
 	loginRedux: loginReducer,
 	journalsRedux: journalsReducer,
 	sectionFilter: sectionFilterReducer,
-	displayForm: displayFormReducer,
+	displayJournalForm: displayJournalFormReducer,
 	monthlies: monthliesReducer,
 	displayMonthlyForm: displayMonthlyFormReducer,
 })
