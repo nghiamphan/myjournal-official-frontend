@@ -26,6 +26,7 @@ const DetailHeader = () => {
 		<div className="detail-header flex-container">
 			<div className="detail-header-button-group">
 				{(displayedJournalId || !displayJournalForm) &&
+				sectionFilter === 'all' &&
 				<button
 					className="btn btn-dark detail-header-button"
 					title="Write a new journal"
