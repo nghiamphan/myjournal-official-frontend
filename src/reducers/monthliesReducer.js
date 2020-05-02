@@ -3,9 +3,9 @@ import monthlyService from '../services/monthlyService'
 const monthliesReducer = (state = [], action) => {
 	switch (action.type) {
 	case 'INIT_MONTHLIES':
-		return action.data.map(monthly => ({ ...monthly, editable: false }))
+		return action.data.map(monthly => ({ ...monthly, editable: false })).reverse()
 	case 'CREATE_MONTHLY':
-		return state.concat(action.data)
+		return [action.data].concat(state)
 	case 'UPDATE_MONTHLY':
 		return state.map(monthly =>
 			monthly.id === action.data.id
