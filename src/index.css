@@ -280,7 +280,7 @@ a.register-link {
 
 .journal-page {
 	padding-left: 15px;
-	padding-bottom: 125px;
+	padding-bottom: 25px;
 }
 
 .todo-item, .reflection-item, .book-summary-item, .quote-item, .word-item {
@@ -328,8 +328,7 @@ a.register-link {
 
 .quote-content {
 	margin-left: 15px;
-	text-size-adjust: 1.25rem;
-	font-size: 110%;
+	font-size: 104%;
 }
 
 .quote-source {
@@ -347,7 +346,7 @@ a.register-link {
 
 .add-form-page {
 	padding-left: 15px;
-	padding-bottom: 125px;
+	padding-bottom: 25px;
 }
 
 .add-form-header {
