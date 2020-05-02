@@ -3,11 +3,19 @@ import monthlyService from '../services/monthlyService'
 const monthliesReducer = (state = [], action) => {
 	switch (action.type) {
 	case 'INIT_MONTHLIES':
-		return action.data
+		return action.data.map(monthly => ({ ...monthly, editable: false }))
 	case 'CREATE_MONTHLY':
 		return state.concat(action.data)
 	case 'UPDATE_MONTHLY':
-		return state.map(monthly => monthly.id === action.data.id ? action.data : monthly)
+		return state.map(monthly =>
+			monthly.id === action.data.id
+				? { ...action.data, editable: false }
+				: monthly)
+	case 'TOGGLE_MONTHLY_UPDATE_FORM':
+		return state.map(monthly =>
+			monthly.id === action.id
+				? { ...monthly, editable: !monthly.editable }
+				: monthly)
 	case 'DELETE_MONTHLY':
 		return state.filter(monthly => monthly.id !== action.id)
 	case 'USER_LOGOUT':
@@ -68,5 +76,10 @@ export const deleteMonthly = id => {
 		}
 	}
 }
+
+export const toggleMonthlyUpdateForm = id => ({
+	type: 'TOGGLE_MONTHLY_UPDATE_FORM',
+	id
+})
 
 export default monthliesReducer

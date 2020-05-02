@@ -458,7 +458,7 @@ a.register-link {
 	padding-bottom: 125px;
 }
 
-.monthly {
+.monthly, .monthly-editable {
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-top: 10px;
