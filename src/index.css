@@ -304,7 +304,7 @@ a.register-link {
 	border-radius: .5rem;
 }
 
-.reflection-item {
+.reflection-item, .add-reflection-item {
 	background-color: blanchedalmond;
 }
 
@@ -377,7 +377,7 @@ a.register-link {
 	margin-top: 15px;
 }
 
-.add-todo-item, .add-book-summary-item, .add-quote-item, .add-word-item {
+.add-todo-item, .add-reflection-item, .add-book-summary-item, .add-quote-item, .add-word-item {
 	flex-basis:85%;
 	padding-left: 1%;
 	margin-right: 1%;
@@ -385,7 +385,7 @@ a.register-link {
 	border-radius: .5rem;
 }
 
-.add-book-summary-item, .add-quote-item, .add-word-item {
+.add-reflection-item, .add-book-summary-item, .add-quote-item, .add-word-item {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
@@ -404,7 +404,7 @@ a.register-link {
 }
 
 .reflection-input {
-	width: 80%;
+	width: 95%;
 	height: 100px;
 }
 

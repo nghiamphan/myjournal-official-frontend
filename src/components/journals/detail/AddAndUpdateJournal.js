@@ -20,6 +20,11 @@ const AddAndUpdateJournal = () => {
 		name: 'todos'
 	})
 
+	const reflectionsInputArray = useFieldArray({
+		control,
+		name: 'reflections'
+	})
+
 	const bookSummariesInputArray = useFieldArray({
 		control,
 		name: 'book_summaries'
@@ -55,7 +60,7 @@ const AddAndUpdateJournal = () => {
 		const journalObject = {
 			date: data.date,
 			todos: data.todos ? data.todos : [],
-			reflection: data.reflection,
+			reflections: data.reflections ? data.reflections : [],
 			book_summaries: data.book_summaries ? data.book_summaries : [],
 			quotes: data.quotes ? data.quotes : [],
 			words_of_today: data.words_of_today ? data.words_of_today : []
@@ -147,15 +152,36 @@ const AddAndUpdateJournal = () => {
 
 
 				<div className="reflections-section">
-					<h5>How is your day?</h5>
-					<div>
-						<textarea
-							className="journal-form-control reflection-input"
-							name="reflection"
-							ref={register({ required: true })}
-						/>
-					</div>
-					{errors.reflection && fieldMissingErrorText()}
+					<h5>Reflections</h5>
+					{reflectionsInputArray.fields.length === 0 &&
+					<FirstAddButton
+						inputArray={reflectionsInputArray}
+						buttonText="Add a reflection"
+					/>
+					}
+
+					{reflectionsInputArray.fields.map((reflection, index) => (
+						<div className="flex-container" key={reflection.id}>
+							<div className="add-reflection-item">
+								<textarea
+									className="journal-form-control reflection-input"
+									placeholder="How is your day?"
+									name={`reflections[${index}].content`}
+									ref={register({
+										required: true,
+										pattern: /[A-Za-z0-9]+/
+									})}
+								/>
+							</div>
+
+							<ItemButtons
+								inputArray={reflectionsInputArray}
+								index={index}
+							/>
+						</div>
+					))}
+
+					{errors.reflections && fieldMissingErrorText()}
 				</div>
 
 				<div className="book-summaries-section">
