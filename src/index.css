@@ -171,6 +171,10 @@
 	margin-right: 100px;
 }
 
+.my-page-container div {
+	position: static;
+}
+
 .my-medium-button {
 	width: 80px;
 	margin-top: 10px;
@@ -190,6 +194,7 @@ a.register-link {
 }
 
 .alert {
+	position: static;
 	margin-top: 15px;
 	font-size: 95%;
 }
