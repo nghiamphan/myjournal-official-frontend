@@ -1,15 +1,28 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import XEffectCalendar from './XEffectCalendar'
 import Monthly from './Monthly'
 import MonthlyEditable from './MonthlyEditable'
+import AddMonthly from './AddMonthly'
+import { toggleMonthlyFormOn } from '../../reducers/displayMonthlyFormReducer'
 
 const CalendarPage = () => {
+	const dispatch = useDispatch()
+
 	const monthlies = useSelector(state => state.monthlies)
+	const displayMonthlyForm = useSelector(state => state.displayMonthlyForm)
 
 	return (
 		<div className="calendar-page flex-container">
 			<XEffectCalendar/>
+			{displayMonthlyForm
+				? <AddMonthly/>
+				: <button
+					onClick={() => dispatch(toggleMonthlyFormOn())}
+				>
+				Write a new card
+				</button>
+			}
 			{monthlies.length > 0 &&
 			monthlies.map(monthly =>
 				monthly.editable
