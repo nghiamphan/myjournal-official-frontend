@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleMonthlyUpdateForm } from '../../reducers/monthliesReducer'
+import { toggleMonthlyUpdateForm, deleteMonthly } from '../../reducers/monthliesReducer'
 
 const Monthly = ({ monthly }) => {
 	const dispatch = useDispatch()
@@ -15,6 +15,11 @@ const Monthly = ({ monthly }) => {
 					onClick={() => dispatch(toggleMonthlyUpdateForm(monthly.id))}
 				>
 					Update
+				</button>
+				<button
+					onClick={() => dispatch(deleteMonthly(monthly.id))}
+				>
+					Delete
 				</button>
 			</div>
 			{monthly.content}
