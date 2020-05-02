@@ -18,9 +18,10 @@ const CalendarPage = () => {
 			{displayMonthlyForm
 				? <AddMonthly/>
 				: <button
+					className="add-monthly-button btn btn-dark"
 					onClick={() => dispatch(toggleMonthlyFormOn())}
 				>
-				Write a new card
+				Write a new monthly update
 				</button>
 			}
 			{monthlies.length > 0 &&

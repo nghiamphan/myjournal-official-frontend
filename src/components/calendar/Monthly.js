@@ -1,5 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { toggleMonthlyUpdateForm, deleteMonthly } from '../../reducers/monthliesReducer'
 import displayDate from '../../utils/displayDate'
 
@@ -8,17 +10,23 @@ const Monthly = ({ monthly }) => {
 
 	return (
 		<div className="monthly">
-			<div>
-				{displayDate(monthly.date)}
+			<div className="monthly-header">
+				<div className="monthly-date h6">
+					{displayDate(monthly.date)}
+				</div>
 				<button
+					className="btn-sm btn-dark"
+					title="Edit this monthly card"
 					onClick={() => dispatch(toggleMonthlyUpdateForm(monthly.id))}
 				>
-					Update
+					<FontAwesomeIcon icon={faPen}/>
 				</button>
 				<button
+					className="btn-sm btn-dark"
+					title="Delete this monthly card"
 					onClick={() => dispatch(deleteMonthly(monthly.id))}
 				>
-					Delete
+					<FontAwesomeIcon icon={faTrash}/>
 				</button>
 			</div>
 			{monthly.content}

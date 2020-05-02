@@ -471,6 +471,34 @@ a.register-link {
 	background-color: thistle;
 }
 
+.monthly-editable {
+	background-color: tomato;
+}
+
+.add-monthly {
+	background-color: violet;
+}
+
+.monthly-header {
+	display: flex;
+	align-items: flex-end;
+}
+
+.monthly-date {
+	flex-grow: 1;
+}
+
+.monthly-input {
+	width: 100%;
+	height: 100px;
+	margin-top: 5px;
+	border-radius: 0.5rem;
+}
+
+.add-monthly-button {
+	margin-top: 15px;
+}
+
 /*
 * === About Page ===
 */
