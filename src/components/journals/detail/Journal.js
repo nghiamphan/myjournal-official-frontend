@@ -78,7 +78,7 @@ const Journal = ({ journal }) => {
 			todosDisplay()}
 
 			{journal.reflections.length !== 0 &&
-			(sectionFilter === 'all' || sectionFilter === 'reflection') &&
+			(sectionFilter === 'all' || sectionFilter === 'reflections') &&
 			reflectionsDisplay()
 			}
 

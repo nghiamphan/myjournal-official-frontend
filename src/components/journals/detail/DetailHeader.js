@@ -62,7 +62,7 @@ const DetailHeader = () => {
 					onChange={event => dispatch(setSectionFilter(event.target.value))}>
 					<option value="all">All</option>
 					<option value="todos">Todo</option>
-					<option value="reflection">Reflection</option>
+					<option value="reflections">Reflection</option>
 					<option value="book_summaries">Book Summary</option>
 					<option value="quotes">Quote</option>
 					<option value="words_of_today">Word of the Day</option>
