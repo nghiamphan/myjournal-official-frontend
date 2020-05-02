@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Todo from './sections/Todo'
+import Reflection from './sections/Reflection'
 import BookSummary from './sections/BookSummary'
 import Quote from './sections/Quote'
 import TodayWord from './sections/TodayWord'
@@ -18,6 +19,17 @@ const Journal = ({ journal }) => {
 						todo={todo} />
 				)}
 			</div>
+		</div>
+	)
+
+	const reflectionsDisplay = () => (
+		<div className="reflections-section">
+			<h5 className="text-muted">Reflections</h5>
+			{journal.reflections.map(reflection =>
+				<Reflection
+					key={reflection.id}
+					reflection={reflection} />
+			)}
 		</div>
 	)
 
@@ -65,11 +77,9 @@ const Journal = ({ journal }) => {
 			(sectionFilter === 'all' || sectionFilter === 'todos') &&
 			todosDisplay()}
 
-			{(sectionFilter === 'all' || sectionFilter === 'reflection') &&
-			<div className="reflections-section">
-				<h5 className="text-muted">How is your day?</h5>
-				{journal.reflection}
-			</div>
+			{journal.reflections.length !== 0 &&
+			(sectionFilter === 'all' || sectionFilter === 'reflection') &&
+			reflectionsDisplay()
 			}
 
 			{journal.book_summaries.length !== 0 &&

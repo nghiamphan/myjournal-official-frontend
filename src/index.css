@@ -283,12 +283,12 @@ a.register-link {
 	padding-bottom: 125px;
 }
 
-.todo-item, .book-summary-item, .quote-item, .word-item {
+.todo-item, .reflection-item, .book-summary-item, .quote-item, .word-item {
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
-.book-summary-item, .quote-item, .word-item {
+.reflection-item, .book-summary-item, .quote-item, .word-item {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-right: 15px;
@@ -302,6 +302,10 @@ a.register-link {
 	margin-right: 15px;
 	margin-bottom: 15px;
 	border-radius: .5rem;
+}
+
+.reflection-item {
+	background-color: blanchedalmond;
 }
 
 .book-summary-item, .add-book-summary-item {
