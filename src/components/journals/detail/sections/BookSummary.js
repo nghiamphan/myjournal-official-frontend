@@ -12,7 +12,7 @@ const BookSummary = ({ bookSummary }) => (
 			</>
 			}
 		</div>
-		{bookSummary.content}
+		<div dangerouslySetInnerHTML={{ __html: bookSummary.content }}/>
 	</div>
 )
 

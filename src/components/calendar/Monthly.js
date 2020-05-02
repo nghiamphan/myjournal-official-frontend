@@ -29,7 +29,7 @@ const Monthly = ({ monthly }) => {
 					<FontAwesomeIcon icon={faTrash}/>
 				</button>
 			</div>
-			{monthly.content}
+			<div dangerouslySetInnerHTML={{ __html: monthly.content }}/>
 		</div>
 	)
 }
