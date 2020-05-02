@@ -1,16 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMonthlyUpdateForm, deleteMonthly } from '../../reducers/monthliesReducer'
+import displayDate from '../../utils/displayDate'
 
 const Monthly = ({ monthly }) => {
 	const dispatch = useDispatch()
 
-	const date = monthly.date.substring(0, 10) + ' '  + monthly.date.substring(11, 19)
-	console.log(new Date(monthly.date).getTimezoneOffset())
 	return (
 		<div className="monthly">
 			<div>
-				{date}
+				{displayDate(monthly.date)}
 				<button
 					onClick={() => dispatch(toggleMonthlyUpdateForm(monthly.id))}
 				>

@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { toggleMonthlyUpdateForm, updateMonthly } from '../../reducers/monthliesReducer'
+import displayDate from '../../utils/displayDate'
 
 const MonthlyEditable = ({ monthly }) => {
 	const dispatch = useDispatch()
@@ -17,13 +18,11 @@ const MonthlyEditable = ({ monthly }) => {
 		dispatch(updateMonthly(monthly.id, monthlyObject))
 	}
 
-	const date = monthly.date.substring(0, 10) + ' '  + monthly.date.substring(11, 19)
-
 	return (
 		<div className="monthly-editable">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
-					{date}
+					{displayDate(monthly.date)}
 					<button
 						type="submit"
 					>
