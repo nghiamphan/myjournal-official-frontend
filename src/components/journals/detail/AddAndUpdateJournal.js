@@ -54,6 +54,13 @@ const AddAndUpdateJournal = () => {
 			} else {
 				setError(`A journal for ${data.date} already exists. If you want to edit the journal for ${data.date}, please choose update function instead.`)
 			}
+			setTimeout(setError, 5000, null)
+			return
+		}
+
+		if (!(data.todos || data.reflections || data.book_summaries || data.quotes || data.words_of_today)) {
+			setError('Journal has no content.')
+			setTimeout(setError, 5000, null)
 			return
 		}
 
