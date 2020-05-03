@@ -11,9 +11,11 @@ const AddAndUpdateJournal = () => {
 	const journalToUpdateId = useSelector(state => state.journalsRedux.journalToUpdateId)
 	const journalToUpdate = journalToUpdateId ? journals.find(journal => journal.id === journalToUpdateId) : null
 
-	const { register, control, handleSubmit, errors } = useForm({
+	const { register, control, handleSubmit, errors, watch } = useForm({
 		defaultValues: journalToUpdate ? journalToUpdate : ''
 	})
+
+	const watchReflections = watch('reflections')
 
 	const todosInputArray = useFieldArray({
 		control,
@@ -169,7 +171,12 @@ const AddAndUpdateJournal = () => {
 
 					{reflectionsInputArray.fields.map((reflection, index) => (
 						<div className="flex-container" key={reflection.id}>
-							<div className="add-reflection-item">
+							<div
+								className="add-reflection-item"
+								style={{ backgroundColor: watchReflections && watchReflections.length > index
+									? watchReflections[index].color
+									: '#ffebcd' }}
+							>
 								<textarea
 									className="journal-form-control reflection-input"
 									placeholder="How is your day?"
@@ -181,10 +188,21 @@ const AddAndUpdateJournal = () => {
 								/>
 							</div>
 
-							<ItemButtons
-								inputArray={reflectionsInputArray}
-								index={index}
-							/>
+							<div style={{ alignSelf: 'center', marginBottom: 10 }}>
+								<ItemButtons
+									inputArray={reflectionsInputArray}
+									index={index}
+								/>
+								Tag color&nbsp;
+								<input
+									type="color"
+									style={{ borderRadius: '0.25rem' }}
+									title="Choose a color for the reflection card"
+									defaultValue="#ffebcd"
+									name={`reflections[${index}].color`}
+									ref={register()}
+								/>
+							</div>
 						</div>
 					))}
 
