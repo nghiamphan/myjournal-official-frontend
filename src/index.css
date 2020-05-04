@@ -193,10 +193,24 @@ a.register-link {
 	margin-bottom: 3px;
 }
 
-.alert {
-	position: static;
+.info-box {
 	margin-top: 15px;
-	font-size: 95%;
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 0.5rem;
+	background-color: violet;
+	font-size: 90%;
+}
+
+.cross-button {
+	float: right;
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 0.5;
+	background-color: transparent;
+	color: #000;
+	border: 0;
+	text-shadow: 0 1px 0 #fff;
 }
 
 /*

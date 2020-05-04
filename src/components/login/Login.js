@@ -7,6 +7,7 @@ import loginJournalImage from '../../images/login-journal.jpg'
 
 const Login = () => {
 	const [loginError, setLoginError] = useState(null)
+	const [displayInfoBox, setDisplayInfoBox] = useState(true)
 	const dispatch = useDispatch()
 
 	const { register, handleSubmit, errors } = useForm()
@@ -76,12 +77,16 @@ const Login = () => {
 				</form>
 				<span className="error-text">{loginError}</span>
 
-				<div className="alert alert-dark alert-dismissible fade show" role="alert">
-					Welcome to My Journal. Use `root` as both username and password for a quick demo. Or go to the about-page to learn more.
-					<button type="button" className="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+				{displayInfoBox &&
+				<div className="info-box">
+					<button
+						className="cross-button"
+						onClick={() => setDisplayInfoBox(false)}>
+						<span>&times;</span>
 					</button>
+					Welcome to My Journal. Use &ldquo;root&rdquo; as both username and password for a quick demo. Or go to the about-page to learn more.
 				</div>
+				}
 			</div>
 
 			<div className="col-md-9">
